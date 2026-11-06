@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>COURTSIDE COLLECT — Prototype V0.11</title>
+<title>COURTSIDE COLLECT — Prototype V0.10</title>
 <style>
 :root{--bg:#080b12;--panel:#111827;--panel2:#172235;--line:#263449;--muted:#91a0b7;--white:#f4f7fb;--cyan:#70e1f5;--gold:#f3c96b}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 70% -15%,#243c58 0,transparent 42%),var(--bg);color:var(--white);font:15px/1.45 Inter,Segoe UI,Arial,sans-serif}
@@ -19,7 +19,7 @@ h1{font-size:clamp(30px,4vw,48px);line-height:1.05;margin:8px 0 12px;letter-spac
 .badge{display:inline-block;padding:4px 8px;border-radius:20px;background:#ffffff15;color:#dbe8f6;font-size:11px}.muted{color:var(--muted)}.hidden{display:none!important}.pack{display:flex;align-items:center;gap:24px;padding:26px;border:1px solid #45617b;border-radius:20px;background:radial-gradient(circle at 25% 20%,#31516d,#101827 70%);max-width:760px}.pack-art{width:160px;height:220px;border-radius:14px;background:linear-gradient(145deg,#e7faff,#447a9e 30%,#10263d 60%,#a8eaff);display:grid;place-items:center;color:#102235;font-size:36px;font-weight:1000;text-align:center;box-shadow:0 14px 28px #0008;transform:rotate(-5deg);flex-shrink:0}.pack-info{z-index:1}.pack-info h3{font-size:24px;margin:0 0 8px}.pack-info p{color:#b7c6d9}.price{font-size:22px;color:var(--gold);font-weight:900;margin:15px 0}
 .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}.toolbar input,.toolbar select{background:#111c2b;border:1px solid var(--line);border-radius:9px;color:white;padding:10px}.empty{padding:35px;text-align:center;color:var(--muted);border:1px dashed #35465e;border-radius:14px}
 .reveal{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:15px;margin-top:22px}.reveal .card{animation:pop .45s both}@keyframes pop{from{opacity:0;transform:translateY(20px) scale(.94)}to{opacity:1;transform:none}}
-.listing{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px;border-bottom:1px solid var(--line)}.listing:last-child{border:0}.mini{display:flex;align-items:center;gap:12px}.avatar{width:42px;height:54px;border-radius:6px;background:linear-gradient(145deg,#b8d8eb,#172c44);display:grid;place-items:center;font-weight:900}
+.listing{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px;border-bottom:1px solid var(--line)}.listing:last-child{border:0}.mini{display:flex;align-items:center;gap:12px}.avatar{width:42px;height:54px;border-radius:6px;background:linear-gradient(145deg,#b8d8eb,#172c44);display:grid;place-items:center;font-weight:900;overflow:hidden}.avatar img{width:100%;height:100%;object-fit:cover;object-position:center top}
 .notice{margin-top:16px;padding:12px 14px;background:#13283a;border:1px solid #31516d;border-radius:10px;color:#cce9f5;font-size:13px}
 footer{color:#708097;font-size:12px;margin-top:35px}
 @media(max-width:760px){.layout{grid-template-columns:1fr}aside{padding:10px 14px;border-right:0;border-bottom:1px solid #ffffff12}.nav{position:static;display:flex;overflow:auto}.nav button{white-space:nowrap;padding:9px 12px}main{padding:24px 16px}.hero{padding:22px}.hero-art{font-size:55px}.stats{gap:8px}.stat{padding:12px}.stat strong{font-size:20px}.pack{align-items:flex-start;padding:16px;gap:15px}.pack-art{width:112px;height:165px;font-size:27px}.pack-info h3{font-size:20px}}
@@ -225,45 +225,42 @@ const players=[
 {name:"Jalen Brunson",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1628973.png",team:"New York Knicks",abbr:"NYK",initials:"JB",ovr:92,color:"#2e5f9c"},
 {name:"Ja Morant",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1629630.png",team:"Memphis Grizzlies",abbr:"MEM",initials:"JM",ovr:91,color:"#315d91"},
 {name:"Donovan Mitchell",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1628378.png",team:"Cleveland Cavaliers",abbr:"CLE",initials:"DM",ovr:93,color:"#8b3446"},
-{name:"Tyrese Haliburton",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1630169.png",team:"Indiana Pacers",abbr:"IND",initials:"TH",ovr:91,color:"#b58a25"}
-,{name:"Kyrie Irving",team:"Dallas Mavericks",abbr:"DAL",initials:"KI",ovr:93,color:"#2674a5"}
-,{name:"Jaylen Brown",team:"Boston Celtics",abbr:"BOS",initials:"JB",ovr:91,color:"#28704e"}
-,{name:"Joel Embiid",team:"Philadelphia 76ers",abbr:"PHI",initials:"JE",ovr:94,color:"#245b9a"}
-,{name:"Paolo Banchero",team:"Orlando Magic",abbr:"ORL",initials:"PB",ovr:90,color:"#315a83"}
-,{name:"Tyrese Maxey",team:"Philadelphia 76ers",abbr:"PHI",initials:"TM",ovr:91,color:"#245b9a"}
-,{name:"Cade Cunningham",team:"Detroit Pistons",abbr:"DET",initials:"CC",ovr:89,color:"#b54a40"}
-
-,{name:"Trae Young",team:"Atlanta Hawks",abbr:"ATL",initials:"TY",ovr:90,color:"#9b3444"}
-,{name:"Bam Adebayo",team:"Miami Heat",abbr:"MIA",initials:"BA",ovr:90,color:"#9b3444"}
-
-,{name:"Michael Jordan",team:"Chicago Bulls · Légende",abbr:"CHI",initials:"MJ",ovr:99,color:"#a72d3b",legend:true}
-,{name:"Kobe Bryant",team:"Los Angeles Lakers · Légende",abbr:"LAL",initials:"KB",ovr:99,color:"#6e4b91",legend:true}
-,{name:"Shaquille O'Neal",team:"Los Angeles Lakers · Légende",abbr:"LAL",initials:"SO",ovr:98,color:"#6e4b91",legend:true}
-,{name:"Magic Johnson",team:"Los Angeles Lakers · Légende",abbr:"LAL",initials:"MJ",ovr:98,color:"#6e4b91",legend:true}
-,{name:"Larry Bird",team:"Boston Celtics · Légende",abbr:"BOS",initials:"LB",ovr:97,color:"#28704e",legend:true}
-,{name:"Tim Duncan",team:"San Antonio Spurs · Légende",abbr:"SAS",initials:"TD",ovr:97,color:"#566777",legend:true}
-,{name:"Kareem Abdul-Jabbar",team:"Los Angeles Lakers · Légende",abbr:"LAL",initials:"KA",ovr:98,color:"#6e4b91",legend:true}
-,{name:"Allen Iverson",team:"Philadelphia 76ers · Légende",abbr:"PHI",initials:"AI",ovr:96,color:"#245b9a",legend:true}
-,{name:"Dwyane Wade",team:"Miami Heat · Légende",abbr:"MIA",initials:"DW",ovr:96,color:"#9b3444",legend:true}
-,{name:"Vince Carter",team:"Toronto Raptors · Légende",abbr:"TOR",initials:"VC",ovr:95,color:"#9b3444",legend:true}
-,{name:"Dirk Nowitzki",team:"Dallas Mavericks · Légende",abbr:"DAL",initials:"DN",ovr:96,color:"#2674a5",legend:true}
-,{name:"Hakeem Olajuwon",team:"Houston Rockets · Légende",abbr:"HOU",initials:"HO",ovr:97,color:"#b54a40",legend:true}
-,{name:"Charles Barkley",team:"Phoenix Suns · Légende",abbr:"PHX",initials:"CB",ovr:95,color:"#9b5737",legend:true}
-,{name:"Scottie Pippen",team:"Chicago Bulls · Légende",abbr:"CHI",initials:"SP",ovr:95,color:"#a72d3b",legend:true}
-,{name:"Julius Erving",team:"Philadelphia 76ers · Légende",abbr:"PHI",initials:"JE",ovr:96,color:"#245b9a",legend:true}
-,{name:"Isiah Thomas",team:"Detroit Pistons · Légende",abbr:"DET",initials:"IT",ovr:94,color:"#b54a40",legend:true}
-,{name:"Kevin Garnett",team:"Boston Celtics · Légende",abbr:"BOS",initials:"KG",ovr:96,color:"#28704e",legend:true}
-,{name:"David Robinson",team:"San Antonio Spurs · Légende",abbr:"SAS",initials:"DR",ovr:95,color:"#566777",legend:true}
-,{name:"John Stockton",team:"Utah Jazz · Légende",abbr:"UTA",initials:"JS",ovr:94,color:"#66558b",legend:true}
-,{name:"Patrick Ewing",team:"New York Knicks · Légende",abbr:"NYK",initials:"PE",ovr:94,color:"#2e5f9c",legend:true}
-,{name:"Clyde Drexler",team:"Portland Trail Blazers · Légende",abbr:"POR",initials:"CD",ovr:94,color:"#b54a40",legend:true}
-,{name:"Reggie Miller",team:"Indiana Pacers · Légende",abbr:"IND",initials:"RM",ovr:94,color:"#b58a25",legend:true}
-,{name:"Jason Kidd",team:"New Jersey Nets · Légende",abbr:"NJN",initials:"JK",ovr:94,color:"#315a83",legend:true}
-,{name:"Steve Nash",team:"Phoenix Suns · Légende",abbr:"PHX",initials:"SN",ovr:94,color:"#9b5737",legend:true}
-,{name:"Paul Pierce",team:"Boston Celtics · Légende",abbr:"BOS",initials:"PP",ovr:94,color:"#28704e",legend:true},
-{name:"Bob Cousy",team:"Boston Celtics · Légende",abbr:"BOS",initials:"BC",ovr:93,color:"#28704e",legend:true}
-,{name:"Yao Ming",team:"Houston Rockets · Légende",abbr:"HOU",initials:"YM",ovr:95,color:"#b54a40",legend:true}
-
+{name:"Tyrese Haliburton",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1630169.png",team:"Indiana Pacers",abbr:"IND",initials:"TH",ovr:91,color:"#b58a25"},
+{name:"Joel Embiid",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/203954.png",team:"Philadelphia 76ers",abbr:"PHI",initials:"JE",ovr:94,color:"#315b91"},
+{name:"Kyrie Irving",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/202681.png",team:"Dallas Mavericks",abbr:"DAL",initials:"KI",ovr:93,color:"#27608d"},
+{name:"Damian Lillard",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/203081.png",team:"Portland Trail Blazers",abbr:"POR",initials:"DL",ovr:92,color:"#b54a40"},
+{name:"Jaylen Brown",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1627759.png",team:"Boston Celtics",abbr:"BOS",initials:"JB",ovr:91,color:"#28704e"},
+{name:"Paolo Banchero",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1631094.png",team:"Orlando Magic",abbr:"ORL",initials:"PB",ovr:90,color:"#315b91"},
+{name:"Cade Cunningham",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1630595.png",team:"Detroit Pistons",abbr:"DET",initials:"CC",ovr:90,color:"#b54a40"},
+{name:"Tyrese Maxey",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1630178.png",team:"Philadelphia 76ers",abbr:"PHI",initials:"TM",ovr:91,color:"#315b91"},
+{name:"Trae Young",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1629027.png",team:"Atlanta Hawks",abbr:"ATL",initials:"TY",ovr:91,color:"#b54a40"},
+{name:"Bam Adebayo",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1628389.png",team:"Miami Heat",abbr:"MIA",initials:"BA",ovr:90,color:"#b54a40"},
+{name:"Chet Holmgren",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1631096.png",team:"Oklahoma City Thunder",abbr:"OKC",initials:"CH",ovr:90,color:"#27608d"},
+{name:"Michael Jordan",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/893.png",team:"Chicago Bulls",abbr:"CHI",initials:"MJ",ovr:99,color:"#b54a40"},
+{name:"Kobe Bryant",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/977.png",team:"Los Angeles Lakers",abbr:"LAL",initials:"KB",ovr:99,color:"#6e4b91"},
+{name:"Shaquille O’Neal",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/406.png",team:"Los Angeles Lakers",abbr:"LAL",initials:"SO",ovr:98,color:"#6e4b91"},
+{name:"Allen Iverson",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/947.png",team:"Philadelphia 76ers",abbr:"PHI",initials:"AI",ovr:96,color:"#315b91"},
+{name:"Magic Johnson",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/771.png",team:"Los Angeles Lakers",abbr:"LAL",initials:"MJ",ovr:98,color:"#6e4b91"},
+{name:"Larry Bird",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1449.png",team:"Boston Celtics",abbr:"BOS",initials:"LB",ovr:97,color:"#28704e"},
+{name:"Tim Duncan",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1495.png",team:"San Antonio Spurs",abbr:"SAS",initials:"TD",ovr:97,color:"#566777"},
+{name:"Kareem Abdul-Jabbar",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/76003.png",team:"Los Angeles Lakers",abbr:"LAL",initials:"KA",ovr:98,color:"#6e4b91"},
+{name:"Vince Carter",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1713.png",team:"Toronto Raptors",abbr:"TOR",initials:"VC",ovr:95,color:"#8b3446"},
+{name:"Dwyane Wade",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/2548.png",team:"Miami Heat",abbr:"MIA",initials:"DW",ovr:96,color:"#b54a40"},
+{name:"Hakeem Olajuwon",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/165.png",team:"Houston Rockets",abbr:"HOU",initials:"HO",ovr:97,color:"#b54a40"},
+{name:"Bill Russell",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/78049.png",team:"Boston Celtics",abbr:"BOS",initials:"BR",ovr:97,color:"#28704e"},
+{name:"Wilt Chamberlain",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/76375.png",team:"Philadelphia 76ers",abbr:"PHI",initials:"WC",ovr:98,color:"#315b91"},
+{name:"Julius Erving",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/76681.png",team:"Philadelphia 76ers",abbr:"PHI",initials:"JE",ovr:96,color:"#315b91"},
+{name:"Charles Barkley",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/787.png",team:"Phoenix Suns",abbr:"PHX",initials:"CB",ovr:95,color:"#9b5737"},
+{name:"Karl Malone",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/252.png",team:"Utah Jazz",abbr:"UTA",initials:"KM",ovr:95,color:"#6e4b91"},
+{name:"John Stockton",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/304.png",team:"Utah Jazz",abbr:"UTA",initials:"JS",ovr:94,color:"#6e4b91"},
+{name:"Scottie Pippen",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/937.png",team:"Chicago Bulls",abbr:"CHI",initials:"SP",ovr:96,color:"#b54a40"},
+{name:"Dirk Nowitzki",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1717.png",team:"Dallas Mavericks",abbr:"DAL",initials:"DN",ovr:96,color:"#27608d"},
+{name:"Kevin Garnett",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/708.png",team:"Boston Celtics",abbr:"BOS",initials:"KG",ovr:96,color:"#28704e"},
+{name:"David Robinson",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/764.png",team:"San Antonio Spurs",abbr:"SAS",initials:"DR",ovr:95,color:"#566777"},
+{name:"Patrick Ewing",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/121.png",team:"New York Knicks",abbr:"NYK",initials:"PE",ovr:95,color:"#2e5f9c"},
+{name:"Isiah Thomas",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/78318.png",team:"Detroit Pistons",abbr:"DET",initials:"IT",ovr:95,color:"#b54a40"},
+{name:"Reggie Miller",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/397.png",team:"Indiana Pacers",abbr:"IND",initials:"RM",ovr:94,color:"#b58a25"},
+{name:"Steve Nash",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/959.png",team:"Phoenix Suns",abbr:"PHX",initials:"SN",ovr:94,color:"#9b5737"},
 ];
 let state={coins:2500,cards:[],packs:0,shopStock:5,shopSales:0,shopCustomers:0,customer:null};
 try{const stored=JSON.parse(window.localStorage.getItem("cc_save")||"null");if(stored&&typeof stored==="object")state={...state,...stored};}catch(e){console.warn("Sauvegarde locale indisponible : session temporaire.",e)}
@@ -277,8 +274,8 @@ const rarities=["Base","Rare","Epic","Legendary","Exceptional"];
 function save(){try{window.localStorage.setItem("cc_save",JSON.stringify(state))}catch(e){console.warn("Sauvegarde impossible dans ce navigateur.",e)}updateUI()}
 function fmt(n){return n.toLocaleString("fr-FR")}
 function rarityRoll(){let r=Math.random();if(r<.01)return"Exceptional";if(r<.05)return"Legendary";if(r<.15)return"Epic";if(r<.40)return"Rare";return"Base"}
-function makeCard(){let p=players[Math.floor(Math.random()*players.length)],r=rarityRoll();let serialMap={Exceptional:"1/1",Legendary:"01/10",Epic:" /25",Rare:" /99"};let autograph=r!=="Base"&&Math.random()<.12;let serial=serialMap[r]||"";if(autograph){serial=r==="Exceptional"?"1/1":r==="Legendary"?" /5":r==="Epic"?" /10":" /25";}return{id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),...p,rarity:r,autograph,serial,value:({Base:70,Rare:autograph?1200:180,Epic:autograph?2800:550,Legendary:autograph?6500:1800,Exceptional:12000})[r]}}
-function cardHTML(c){let cls=c.rarity==="Exceptional"?"exceptional":c.rarity==="Legendary"?"legendary":c.rarity==="Epic"?"epic":c.rarity==="Rare"?"rare":"base";let portrait=c.photo?`<img src="${c.photo}" alt="${c.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'">`+`<span class="fallback-initials" style="display:none">${c.initials}</span>`:`<span>${c.initials}</span>`;return `<div class="card chrome-card ${cls}"><div class="card-inner" style="--glow:${c.color}"><div class="card-top"><span class="brand">COURTSIDE CHROME</span><span class="rarity">${c.autograph?"AUTOGRAPHE · ":""}${c.rarity}</span></div><div class="portrait">${portrait}</div><div class="player"><b>${c.name}</b><small>${c.team}</small><div class="teamline">${c.abbr} · ${c.legend?"LEGENDS":"SEASON 01"}</div><div style="font-size:9px;letter-spacing:1px;margin-top:5px;color:#e5edf7">ATQ ${Math.round(c.ovr*.98)} · DEF ${Math.round(c.ovr*.91)} · IQ ${Math.round(c.ovr*.96)}</div>${c.autograph?`<div style="font-family:cursive;font-size:17px;font-style:italic;margin-top:4px;color:#fff;text-shadow:0 1px 4px #000">${c.initials} ✍</div>`:""}</div><div class="card-bottom"><span class="overall">${c.ovr}</span><span class="brand">CC ${c.serial||"BASE"}</span></div></div></div>`}
+function makeCard(){let p=players[Math.floor(Math.random()*players.length)],r=rarityRoll();return{id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),...p,rarity:r,serial:r==="Exceptional"?"1/1":r==="Legendary"?"01/10":r==="Epic"?" /99":r==="Rare"?" /299":"",value:{Base:70,Rare:180,Epic:550,Legendary:1800,Exceptional:5000}[r]}}
+function cardHTML(c){let cls=c.rarity==="Exceptional"?"exceptional":c.rarity==="Legendary"?"legendary":c.rarity==="Epic"?"epic":c.rarity==="Rare"?"rare":"base";let portrait=c.photo?`<img src="${c.photo}" alt="${c.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'">`+`<span class="fallback-initials" style="display:none">${c.initials}</span>`:`<span>${c.initials}</span>`;return `<div class="card chrome-card ${cls}"><div class="card-inner" style="--glow:${c.color}"><div class="card-top"><span class="brand">COURTSIDE CHROME</span><span class="rarity">${c.rarity}</span></div><div class="portrait">${portrait}</div><div class="player"><b>${c.name}</b><small>${c.team}</small><div class="teamline">${c.abbr} · SEASON 01</div></div><div class="card-bottom"><span class="overall">${c.ovr}</span><span class="brand">CC ${c.serial||"BASE"}</span></div></div></div>`}
 function showPage(page){document.querySelectorAll("main section").forEach(s=>s.classList.add("hidden"));document.getElementById(page).classList.remove("hidden");document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));if(page==="collection")renderCollection();if(page==="market")renderMarket();if(page==="trades")renderTradeSelect();if(page==="management")renderManagement()}
 document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
 let currentPackCards=[],currentPackIndex=0,packBusy=false;
@@ -298,7 +295,7 @@ function showPackCard(){const card=currentPackCards[currentPackIndex];document.g
 function nextPackCard(){if(currentPackIndex>=7){finishPack();return}currentPackIndex++;showPackCard()}
 function finishPack(){document.getElementById("packModal").classList.remove("active");document.getElementById("packResult").innerHTML=`<div class="section-head"><h2>✨ Tes 8 nouvelles cartes</h2><span class="badge">Booster ouvert !</span></div><div class="pack-result-grid">${currentPackCards.map((card,i)=>`<div style="animation:pop .4s ${i*.07}s both">${cardHTML(card)}</div>`).join("")}</div>`;packBusy=false;document.getElementById("packResult").scrollIntoView({behavior:"smooth",block:"start"})}
 function renderCollection(){let q=(document.getElementById("search").value||"").toLowerCase(),f=document.getElementById("filter").value;let arr=state.cards.filter(c=>c.name.toLowerCase().includes(q)&&(f==="all"||c.rarity===f));document.getElementById("collectionCards").innerHTML=arr.length?arr.map(cardHTML).join(""):'<div class="empty">Aucune carte ici pour le moment. Ouvre un booster pour commencer !</div>'}
-function renderMarket(){let stock=[...players].sort(()=>Math.random()-.5).slice(0,6).map(p=>({...p,rarity:["Base","Rare","Epic","Legendary"][Math.floor(Math.random()*4)]}));document.getElementById("marketList").innerHTML=stock.map((p,i)=>{let price={Base:100,Rare:300,Epic:850}[p.rarity];return `<div class="listing"><div class="mini"><div class="avatar">${p.initials}</div><div><b>${p.name}</b><div class="muted">${p.abbr} · ${p.rarity}</div></div></div><div><b style="color:#f3c96b">${price} CC</b> <button onclick="buyMarket(${i},${price})">Acheter</button></div></div>`}).join("");window.marketStock=stock}
+function renderMarket(){let stock=[...players].sort(()=>Math.random()-.5).slice(0,6).map(p=>({...p,rarity:["Base","Rare","Epic","Legendary"][Math.floor(Math.random()*4)]}));document.getElementById("marketList").innerHTML=stock.map((p,i)=>{let price={Base:100,Rare:300,Epic:850}[p.rarity];return `<div class="listing"><div class="mini"><div class="avatar"><img src="${p.photo}" alt="${p.name}" loading="lazy" onerror="this.replaceWith(document.createTextNode('${p.initials}'))"></div><div><b>${p.name}</b><div class="muted">${p.abbr} · ${p.rarity}</div></div></div><div><b style="color:#f3c96b">${price} CC</b> <button onclick="buyMarket(${i},${price})">Acheter</button></div></div>`}).join("");window.marketStock=stock}
 function buyMarket(i,price){if(state.coins<price){alert("Pas assez de crédits !");return}let p=window.marketStock[i];state.coins-=price;state.cards.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,5),...p,serial:"",value:price});save();renderMarket()}
 function renderTradeSelect(){let s=document.getElementById("tradeCard");s.innerHTML=state.cards.length?state.cards.map(c=>`<option value="${c.id}">${c.name} — ${c.rarity}</option>`).join(""):'<option value="">Aucune carte à échanger</option>';s.disabled=!state.cards.length}
 function tradeCard(){if(!state.cards.length)return;let id=document.getElementById("tradeCard").value,idx=state.cards.findIndex(c=>c.id===id);if(idx<0)return;let old=state.cards.splice(idx,1)[0],fresh=makeCard();state.cards.push(fresh);save();document.getElementById("tradeResult").innerHTML=`Tu as échangé <b>${old.name}</b> contre <b>${fresh.name}</b> (${fresh.rarity}).`;renderTradeSelect()}
