@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>COURTSIDE COLLECT — Prototype V0.9</title>
+<title>COURTSIDE COLLECT — Prototype V0.10</title>
 <style>
 :root{--bg:#080b12;--panel:#111827;--panel2:#172235;--line:#263449;--muted:#91a0b7;--white:#f4f7fb;--cyan:#70e1f5;--gold:#f3c96b}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 70% -15%,#243c58 0,transparent 42%),var(--bg);color:var(--white);font:15px/1.45 Inter,Segoe UI,Arial,sans-serif}
@@ -83,39 +83,38 @@ background:radial-gradient(ellipse at 50% 35%,#314b66 0,#17283b 48%,#09111c 100%
 
 
 /* Gestion du magasin — V0.8 */
-.management-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:22px 0}
-.management-stat{background:linear-gradient(145deg,#17263a,#101827);border:1px solid #2b405a;border-radius:15px;padding:18px}
-.management-stat span{display:block;color:#9eafc5;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1px}
-.management-stat strong{display:block;font-size:27px;color:#f3c96b;margin-top:7px}
-.management-actions{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
-.management-actions .secondary-btn{background:#1b2b40;color:#eaf5ff;border:1px solid #49627e}
-.management-log{display:grid;gap:8px;margin-top:14px}
-.management-log-item{padding:11px 13px;border-radius:10px;background:#111c2b;border:1px solid #263449;color:#dbe7f5}
-.management-log-item small{display:block;color:#91a0b7;margin-top:3px}
-@media(max-width:700px){.management-grid{grid-template-columns:1fr}.management-stat{padding:14px}}
+#management .notice{background:#172638;border:1px solid #344a62;border-radius:12px;padding:16px;color:#eaf5ff}
+#management .secondary-btn{background:#1b2b40;color:#eaf5ff;border:1px solid #49627e}
+@media(max-width:760px){#management .stats{grid-template-columns:1fr 1fr 1fr;gap:7px}#management .stat{padding:11px 8px}#management .stat strong{font-size:20px}}
 
-/* V0.9 — finition originale inspirée des cartes chrome */
-.card{padding:5px;border-radius:16px;background:linear-gradient(125deg,#fff 0%,#aebbc9 9%,#f8fbff 18%,#718399 31%,#f7fbff 43%,#8b9bad 56%,#fff 69%,#75869a 82%,#f8fbff 100%);box-shadow:0 13px 28px #0008,inset 0 0 0 1px #ffffffc9;}
-.card-inner{border:1px solid #ffffffb8;border-radius:12px;background:linear-gradient(155deg,#24364b 0%,#101b2b 48%,#344b62 100%);box-shadow:inset 0 0 22px #d9efff24;}
-.card-inner:before{background:linear-gradient(112deg,transparent 8%,#ffffff08 27%,#fff9 39%,#a5e8ff40 44%,#ffffff0c 51%,transparent 68%);mix-blend-mode:screen;}
-.card-inner:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.23;background:repeating-linear-gradient(135deg,transparent 0 7px,#c9f5ff18 8px 9px,transparent 10px 17px);}
-.card-top,.card-bottom,.portrait,.player{position:relative;z-index:2;}
-.brand{letter-spacing:2.4px;text-shadow:0 1px 4px #0008;}
-.rarity{background:#07111c99;border-color:#e8f7ffb0;box-shadow:0 0 8px #bdeaff55;}
-.portrait{filter:drop-shadow(0 5px 9px #0009);}
-.player b{letter-spacing:.3px;text-transform:uppercase;text-shadow:0 2px 7px #000;}
-.card.gold{background:linear-gradient(120deg,#fff8d8,#b8a16b,#fff4c6,#8b7138,#fff);}
-.card.gold .card-inner{background:linear-gradient(145deg,#5c4b2b,#172333 58%,#80662f);}
-.card.epic{background:linear-gradient(120deg,#fff,#c6a5ed,#f9eaff,#7446a5,#fff);}
-.card.epic .card-inner{background:linear-gradient(145deg,#49306b,#121b2d 58%,#68448d);}
-.card.legendary{background:linear-gradient(120deg,#fff2d1,#e1a45d,#fff4df,#b65d49,#fff);}
-.card.legendary .card-inner{background:linear-gradient(145deg,#713c2b,#151b2b 58%,#8a4b30);}
-.card.exceptional{background:linear-gradient(120deg,#fff,#74e9ee,#e7c7ff,#fff2a6,#fff);}
-.card.exceptional .card-inner{background:linear-gradient(145deg,#155b70,#111a30 55%,#583f83);}
-.pulled-card .card-inner{box-shadow:inset 0 0 28px #d9efff30,0 0 18px #bdeaff22;}
-@keyframes chromeShine{0%{background-position:-180% 0}100%{background-position:180% 0}}
-.card:hover .card-inner:before{background-size:220% 100%;animation:chromeShine 1.1s ease;}
+/* COURTSIDE COLLECT V0.9 — Chrome-inspired card finish */
+.chrome-card{padding:5px!important;border-radius:15px!important;position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(125deg,#f8fbff 0%,#687582 12%,#f9ffff 24%,#6b7785 38%,#f4f7fb 52%,#65717f 66%,#fff 82%,#7d8997 100%)!important;box-shadow:0 12px 28px #0008,inset 0 0 0 1px #ffffffb0!important}
+.chrome-card:before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;border-radius:inherit;background:linear-gradient(112deg,transparent 12%,#ffffff20 28%,#fff9 36%,#ffffff12 44%,transparent 62%);background-size:220% 100%;animation:chromeSweep 5.5s linear infinite;mix-blend-mode:screen}
+.chrome-card .card-inner{height:255px!important;border:1px solid #ffffffa8!important;border-radius:11px!important;background:linear-gradient(155deg,#253342 0%,#101923 48%,#293a4a 100%)!important;box-shadow:inset 0 0 24px #ffffff12,inset 0 -18px 30px #0005}
+.chrome-card .card-inner:before{background:linear-gradient(130deg,transparent 18%,#ffffff08 32%,#ffffff55 44%,#ffffff0a 54%,transparent 72%)!important;z-index:1}
+.chrome-card .card-inner:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.42;background:repeating-linear-gradient(115deg,transparent 0 7px,#ffffff0b 8px,#ffffff0b 9px,transparent 10px 17px);mix-blend-mode:screen}
+.chrome-card .card-top,.chrome-card .card-bottom,.chrome-card .portrait,.chrome-card .player{position:relative;z-index:3}
+.chrome-card .brand{font-size:8px;letter-spacing:1.5px;color:#f4f8fc;text-shadow:0 1px 5px #000}
+.chrome-card .rarity{backdrop-filter:blur(5px);background:#ffffff18;border-color:#ffffff9c;color:#fff}
+.chrome-card .portrait{height:105px;display:flex;align-items:center;justify-content:center;font-size:67px;font-weight:1000;letter-spacing:-4px;color:#f7fbff;text-shadow:0 4px 18px #000,0 0 22px #ffffff70}
+.chrome-card .portrait span{display:inline-flex;align-items:center;justify-content:center;width:108px;height:88px;border-radius:48% 48% 18% 18%;background:radial-gradient(ellipse at 50% 25%,#ffffff45,#ffffff08 65%,transparent 70%);border-bottom:2px solid #ffffff55}
+.chrome-card .player b{font-size:18px;letter-spacing:.2px;text-transform:uppercase}
+.chrome-card .teamline{color:#d7e6f2}
+.chrome-card .overall{font-size:22px;text-shadow:0 2px 8px #000}
+.chrome-card.base{background:linear-gradient(130deg,#fff,#aab5c0,#f8fcff,#788796,#fff)!important}
+.chrome-card.rare{background:linear-gradient(130deg,#e8f8ff,#5da9d5,#f5fdff,#387ba9,#fff)!important}
+.chrome-card.rare .card-inner{background:linear-gradient(145deg,#183c56,#102638 55%,#24516b)!important}
+.chrome-card.epic{background:linear-gradient(130deg,#fff0ff,#b77be8,#fff,#7442b4,#f5dcff)!important}
+.chrome-card.epic .card-inner{background:linear-gradient(145deg,#42215d,#1e1630 55%,#633a80)!important}
+.chrome-card.legendary{background:linear-gradient(130deg,#fff8d8,#d39a28,#fff4bd,#9c6815,#fff)!important}
+.chrome-card.legendary .card-inner{background:linear-gradient(145deg,#60451c,#211b12 55%,#80602a)!important}
+.chrome-card.exceptional{background:linear-gradient(125deg,#fff,#72eaff,#d58cff,#fff0a2,#77f4d2,#fff)!important;background-size:220% 220%!important;animation:prismShift 7s ease infinite}
+.chrome-card.exceptional .card-inner{background:linear-gradient(145deg,#173e50,#151b35 52%,#49305c)!important;box-shadow:inset 0 0 35px #8cf7ff55,0 0 14px #b9f8ff66}
+@keyframes chromeSweep{0%{background-position:120% 0}100%{background-position:-120% 0}}
+@keyframes prismShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@media(prefers-reduced-motion:reduce){.chrome-card:before,.chrome-card.exceptional{animation:none!important}}
 
+.chrome-card .portrait img{width:100%;height:100%;max-height:112px;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 5px 8px #0009);border-radius:8px}.chrome-card .portrait .fallback-initials{width:108px;height:88px}.chrome-card .portrait{overflow:hidden;min-height:105px}.pulled-card .chrome-card .portrait img{max-height:165px}
 </style></head>
 <body>
 <header><div class="logo">COURTSIDE <span>COLLECT</span></div><div class="wallet">◈ <span id="coins">2 500</span> CC</div></header>
@@ -123,7 +122,7 @@ background:radial-gradient(ellipse at 50% 35%,#314b66 0,#17283b 48%,#09111c 100%
 <aside><nav class="nav">
 <button class="active" data-page="home">⌂ &nbsp; Accueil</button>
 <button data-page="shop">▣ &nbsp; Boutique</button>
-<button data-page="management">▦ &nbsp; Gestion du magasin</button>
+<button data-page="management">▣ &nbsp; Gestion du magasin</button>
 <button data-page="collection">▤ &nbsp; Collection</button>
 <button data-page="market">⇄ &nbsp; Marché</button>
 <button data-page="trades">♧ &nbsp; Échanges</button>
@@ -168,20 +167,39 @@ background:radial-gradient(ellipse at 50% 35%,#314b66 0,#17283b 48%,#09111c 100%
 
 <div class="stats"><div class="stat"><small>Cartes possédées</small><strong id="statCards">0</strong></div><div class="stat"><small>Joueurs différents</small><strong id="statPlayers">0</strong></div><div class="stat"><small>Boosters ouverts</small><strong id="statPacks">0</strong></div></div>
 <div class="section-head"><h2>Dernières acquisitions</h2><button onclick="showPage('collection')">Voir la collection</button></div><div id="recent" class="cards"></div>
-<div class="notice">Prototype V0.7 : ouverture animée des boosters, boutique HTML stylisée (vue 2.5D), monnaie et échanges simulés, progression sauvegardée localement sur ce navigateur.</div>
-</section>
-<section id="management" class="hidden"><div class="eyebrow">Gestion quotidienne</div><h1>Ton magasin.</h1><p class="sub">Gère tes boosters en rayon, réapprovisionne ton stock et accueille des collectionneurs. Les clients et ventes sont simulés.</p>
-<div class="management-grid"><div class="management-stat"><span>Boosters en stock</span><strong id="storeStock">6</strong></div><div class="management-stat"><span>Prix de vente</span><strong>650 CC</strong></div><div class="management-stat"><span>Ventes totales</span><strong id="storeSales">0</strong></div></div>
-<div class="panel"><h3>Réserve et ventes</h3><p class="muted">Un booster acheté en gros coûte 350 CC. Chaque vente rapporte 650 CC.</p><div class="management-actions"><button onclick="simulateCustomers()">Faire venir des clients</button><button class="secondary-btn" onclick="restockPacks()">Réapprovisionner · 3 boosters / 1 050 CC</button></div><div id="managementMessage" class="muted" aria-live="polite">Ta boutique est prête à accueillir ses premiers clients.</div></div>
-<div class="section-head"><h2>Journal de la boutique</h2><span class="badge">Activité récente</span></div><div id="managementLog" class="management-log"><div class="management-log-item">Bienvenue dans ta boutique.<small>Les ventes apparaîtront ici.</small></div></div>
+<div class="notice">Prototype V0.9 : design Chrome holographique des cartes, ouverture animée des boosters, boutique HTML stylisée (vue 2.5D), monnaie et échanges simulés, progression sauvegardée localement sur ce navigateur.</div>
 </section>
 <section id="shop" class="hidden"><div class="eyebrow">La boutique</div><h1>Choisis ton booster.</h1><p class="sub">Chaque booster contient 8 cartes. Chaque carte a ses propres chances de rareté.</p>
 <div class="pack"><div class="pack-art">COURT<br>SIDE<br><span style="font-size:13px;letter-spacing:4px">CHROME</span></div><div class="pack-info"><span class="badge">SÉRIE 01 · STARTER</span><h3>Chrome Starter Pack</h3><p>8 cartes NBA · 5 niveaux de rareté · Chances de trouver une carte exceptionnelle.</p><div class="price">500 CC</div><button onclick="openPack()">Ouvrir un booster</button></div></div><div id="packResult"></div></section>
+<section id="management" class="hidden">
+<div class="eyebrow">Gestion du magasin · Nouveau en V0.8</div><h1>Fais tourner ta boutique.</h1>
+<p class="sub">Accueille des collectionneurs, vends des boosters et réapprovisionne ton stock. Les ventes sont simulées et sauvegardées sur cet appareil.</p>
+<div class="stats">
+ <div class="stat"><small>Boosters en stock</small><strong id="shopStock">5</strong></div>
+ <div class="stat"><small>Ventes réalisées</small><strong id="shopSales">0</strong></div>
+ <div class="stat"><small>Clients servis</small><strong id="shopCustomers">0</strong></div>
+</div>
+<div class="panel" style="margin-bottom:16px">
+ <div class="section-head" style="margin-top:0"><h2>Comptoir de vente</h2><span class="badge">Chrome Starter · 650 CC</span></div>
+ <p class="muted">Un client peut se présenter au comptoir. Vends-lui un booster si tu en as en stock.</p>
+ <div id="customerArea" class="notice">La boutique est calme pour le moment. Fais venir ton premier client !</div>
+ <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+  <button onclick="callCustomer()">Faire venir un client</button>
+  <button class="secondary-btn" onclick="serveCustomer()">Vendre un booster · 650 CC</button>
+ </div>
+ <div id="customerMessage" class="muted" style="margin-top:12px" aria-live="polite"></div>
+</div>
+<div class="panel">
+ <div class="section-head" style="margin-top:0"><h2>Réapprovisionnement</h2><span class="badge">5 boosters · 1 500 CC</span></div>
+ <p class="muted">Commande un carton de cinq boosters pour remplir les étagères.</p>
+ <button onclick="restockPacks()">Acheter 5 boosters · 1 500 CC</button>
+</div>
+</section>
 <section id="collection" class="hidden"><div class="eyebrow">Ton classeur</div><h1>Ma collection.</h1><p class="sub">Toutes tes cartes obtenues, doublons compris.</p><div class="toolbar"><input id="search" placeholder="Rechercher un joueur…" oninput="renderCollection()"><select id="filter" onchange="renderCollection()"><option value="all">Toutes les raretés</option><option>Base</option><option>Rare</option><option>Epic</option><option>Legendary</option><option>Exceptional</option></select></div><div id="collectionCards" class="cards"></div></section>
 <section id="market" class="hidden"><div class="eyebrow">Marché interne</div><h1>Le marché.</h1><p class="sub">Achète des cartes proposées par la simulation avec tes crédits. Les transactions sont fictives et locales.</p><div id="marketList" class="panel"></div></section>
 <section id="trades" class="hidden"><div class="eyebrow">Entre collectionneurs</div><h1>Échanges.</h1><p class="sub">Prépare un échange de démonstration. Pour l'instant, les autres collectionneurs sont simulés.</p><div class="panel"><h3>Échange rapide</h3><p class="muted">Choisis une de tes cartes et échange-la contre une carte aléatoire de valeur proche.</p><select id="tradeCard" style="width:100%;padding:12px;background:#111c2b;color:white;border:1px solid #263449;border-radius:9px"></select><p><button onclick="tradeCard()">Proposer un échange</button></p><div id="tradeResult" class="muted"></div></div><div class="notice">Les échanges multijoueurs nécessiteront ensuite un serveur, des comptes et une protection contre la fraude.</div></section>
 <footer>COURTSIDE COLLECT · Prototype indépendant non affilié à la NBA ou à ses équipes. Les notes affichées sont des valeurs de jeu fictives.</footer>
-<p class="notice">V0.8 : gestion du stock, réapprovisionnement et clients simulés. Une véritable boutique 3D nécessitera ensuite un moteur 3D.</p>
+<p class="notice">V0.7 : ouverture corrigée des boosters de 8 cartes, sauvegarde tolérante et déplacement 2.5D en HTML. Une véritable boutique 3D nécessitera ensuite un moteur 3D.</p>
 </main></div>
 
 <div id="packModal" class="pack-modal" role="dialog" aria-modal="true" aria-label="Ouverture du booster">
@@ -193,35 +211,36 @@ background:radial-gradient(ellipse at 50% 35%,#314b66 0,#17283b 48%,#09111c 100%
 
 <script>
 const players=[
-{name:"Stephen Curry",team:"Golden State Warriors",abbr:"GSW",initials:"SC",ovr:96,color:"#245b9a"},
-{name:"LeBron James",team:"Los Angeles Lakers",abbr:"LAL",initials:"LJ",ovr:97,color:"#6e4b91"},
-{name:"Victor Wembanyama",team:"San Antonio Spurs",abbr:"SAS",initials:"VW",ovr:95,color:"#566777"},
-{name:"Luka Dončić",team:"Los Angeles Lakers",abbr:"LAL",initials:"LD",ovr:96,color:"#6e4b91"},
-{name:"Anthony Edwards",team:"Minnesota Timberwolves",abbr:"MIN",initials:"AE",ovr:94,color:"#315a83"},
-{name:"Nikola Jokić",team:"Denver Nuggets",abbr:"DEN",initials:"NJ",ovr:97,color:"#28558b"},
-{name:"Jayson Tatum",team:"Boston Celtics",abbr:"BOS",initials:"JT",ovr:95,color:"#28704e"},
-{name:"Giannis Antetokounmpo",team:"Milwaukee Bucks",abbr:"MIL",initials:"GA",ovr:96,color:"#315b4c"},
-{name:"Shai Gilgeous-Alexander",team:"Oklahoma City Thunder",abbr:"OKC",initials:"SGA",ovr:96,color:"#27608d"},
-{name:"Kevin Durant",team:"Houston Rockets",abbr:"HOU",initials:"KD",ovr:94,color:"#b54a40"},
-{name:"Devin Booker",team:"Phoenix Suns",abbr:"PHX",initials:"DB",ovr:93,color:"#9b5737"},
-{name:"Jalen Brunson",team:"New York Knicks",abbr:"NYK",initials:"JB",ovr:92,color:"#2e5f9c"},
-{name:"Ja Morant",team:"Memphis Grizzlies",abbr:"MEM",initials:"JM",ovr:91,color:"#315d91"},
-{name:"Donovan Mitchell",team:"Cleveland Cavaliers",abbr:"CLE",initials:"DM",ovr:93,color:"#8b3446"},
-{name:"Tyrese Haliburton",team:"Indiana Pacers",abbr:"IND",initials:"TH",ovr:91,color:"#b58a25"}
+{name:"Stephen Curry",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/201939.png",team:"Golden State Warriors",abbr:"GSW",initials:"SC",ovr:96,color:"#245b9a"},
+{name:"LeBron James",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/2544.png",team:"Los Angeles Lakers",abbr:"LAL",initials:"LJ",ovr:97,color:"#6e4b91"},
+{name:"Victor Wembanyama",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1641705.png",team:"San Antonio Spurs",abbr:"SAS",initials:"VW",ovr:95,color:"#566777"},
+{name:"Luka Dončić",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1629029.png",team:"Los Angeles Lakers",abbr:"LAL",initials:"LD",ovr:96,color:"#6e4b91"},
+{name:"Anthony Edwards",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1630162.png",team:"Minnesota Timberwolves",abbr:"MIN",initials:"AE",ovr:94,color:"#315a83"},
+{name:"Nikola Jokić",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/203999.png",team:"Denver Nuggets",abbr:"DEN",initials:"NJ",ovr:97,color:"#28558b"},
+{name:"Jayson Tatum",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1628369.png",team:"Boston Celtics",abbr:"BOS",initials:"JT",ovr:95,color:"#28704e"},
+{name:"Giannis Antetokounmpo",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/203507.png",team:"Milwaukee Bucks",abbr:"MIL",initials:"GA",ovr:96,color:"#315b4c"},
+{name:"Shai Gilgeous-Alexander",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1628983.png",team:"Oklahoma City Thunder",abbr:"OKC",initials:"SGA",ovr:96,color:"#27608d"},
+{name:"Kevin Durant",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/201142.png",team:"Houston Rockets",abbr:"HOU",initials:"KD",ovr:94,color:"#b54a40"},
+{name:"Devin Booker",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1626164.png",team:"Phoenix Suns",abbr:"PHX",initials:"DB",ovr:93,color:"#9b5737"},
+{name:"Jalen Brunson",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1628973.png",team:"New York Knicks",abbr:"NYK",initials:"JB",ovr:92,color:"#2e5f9c"},
+{name:"Ja Morant",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1629630.png",team:"Memphis Grizzlies",abbr:"MEM",initials:"JM",ovr:91,color:"#315d91"},
+{name:"Donovan Mitchell",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1628378.png",team:"Cleveland Cavaliers",abbr:"CLE",initials:"DM",ovr:93,color:"#8b3446"},
+{name:"Tyrese Haliburton",photo:"https://cdn.nba.com/headshots/nba/latest/1040x760/1630169.png",team:"Indiana Pacers",abbr:"IND",initials:"TH",ovr:91,color:"#b58a25"}
 ];
-let state={coins:2500,cards:[],packs:0};
+let state={coins:2500,cards:[],packs:0,shopStock:5,shopSales:0,shopCustomers:0,customer:null};
 try{const stored=JSON.parse(window.localStorage.getItem("cc_save")||"null");if(stored&&typeof stored==="object")state={...state,...stored};}catch(e){console.warn("Sauvegarde locale indisponible : session temporaire.",e)}
 if(!Number.isFinite(Number(state.coins)))state.coins=2500;
 state.coins=Number(state.coins);if(!Array.isArray(state.cards))state.cards=[];if(!Number.isFinite(Number(state.packs)))state.packs=0;state.packs=Number(state.packs);
-if(!Number.isFinite(Number(state.stockPacks)))state.stockPacks=6;state.stockPacks=Math.max(0,Math.floor(Number(state.stockPacks)));
-if(!Number.isFinite(Number(state.storeSales)))state.storeSales=0;state.storeSales=Math.max(0,Math.floor(Number(state.storeSales)));
-if(!Array.isArray(state.storeLog))state.storeLog=[];
+if(!Number.isFinite(Number(state.shopStock)))state.shopStock=5;state.shopStock=Number(state.shopStock);
+if(!Number.isFinite(Number(state.shopSales)))state.shopSales=0;state.shopSales=Number(state.shopSales);
+if(!Number.isFinite(Number(state.shopCustomers)))state.shopCustomers=0;state.shopCustomers=Number(state.shopCustomers);
+if(state.customer!==null&&(!state.customer||typeof state.customer.name!=="string"))state.customer=null;
 const rarities=["Base","Rare","Epic","Legendary","Exceptional"];
 function save(){try{window.localStorage.setItem("cc_save",JSON.stringify(state))}catch(e){console.warn("Sauvegarde impossible dans ce navigateur.",e)}updateUI()}
 function fmt(n){return n.toLocaleString("fr-FR")}
 function rarityRoll(){let r=Math.random();if(r<.01)return"Exceptional";if(r<.05)return"Legendary";if(r<.15)return"Epic";if(r<.40)return"Rare";return"Base"}
 function makeCard(){let p=players[Math.floor(Math.random()*players.length)],r=rarityRoll();return{id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),...p,rarity:r,serial:r==="Exceptional"?"1/1":r==="Legendary"?"01/10":r==="Epic"?" /99":r==="Rare"?" /299":"",value:{Base:70,Rare:180,Epic:550,Legendary:1800,Exceptional:5000}[r]}}
-function cardHTML(c){let cls=c.rarity==="Exceptional"?"exceptional":c.rarity==="Legendary"?"legendary":c.rarity==="Epic"?"epic":c.rarity==="Rare"?"gold":"";return `<div class="card ${cls}"><div class="card-inner" style="--glow:${c.color}"><div class="card-top"><span class="brand">COURTSIDE</span><span class="rarity">${c.rarity}</span></div><div class="portrait">${c.initials}</div><div class="player"><b>${c.name}</b><small>${c.team}</small><div class="teamline">${c.abbr} · SEASON 01</div></div><div class="card-bottom"><span class="overall">${c.ovr}</span><span class="brand">CC ${c.serial||"BASE"}</span></div></div></div>`}
+function cardHTML(c){let cls=c.rarity==="Exceptional"?"exceptional":c.rarity==="Legendary"?"legendary":c.rarity==="Epic"?"epic":c.rarity==="Rare"?"rare":"base";let portrait=c.photo?`<img src="${c.photo}" alt="${c.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'">`+`<span class="fallback-initials" style="display:none">${c.initials}</span>`:`<span>${c.initials}</span>`;return `<div class="card chrome-card ${cls}"><div class="card-inner" style="--glow:${c.color}"><div class="card-top"><span class="brand">COURTSIDE CHROME</span><span class="rarity">${c.rarity}</span></div><div class="portrait">${portrait}</div><div class="player"><b>${c.name}</b><small>${c.team}</small><div class="teamline">${c.abbr} · SEASON 01</div></div><div class="card-bottom"><span class="overall">${c.ovr}</span><span class="brand">CC ${c.serial||"BASE"}</span></div></div></div>`}
 function showPage(page){document.querySelectorAll("main section").forEach(s=>s.classList.add("hidden"));document.getElementById(page).classList.remove("hidden");document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));if(page==="collection")renderCollection();if(page==="market")renderMarket();if(page==="trades")renderTradeSelect();if(page==="management")renderManagement()}
 document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
 let currentPackCards=[],currentPackIndex=0,packBusy=false;
@@ -245,11 +264,32 @@ function renderMarket(){let stock=[...players].sort(()=>Math.random()-.5).slice(
 function buyMarket(i,price){if(state.coins<price){alert("Pas assez de crédits !");return}let p=window.marketStock[i];state.coins-=price;state.cards.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,5),...p,serial:"",value:price});save();renderMarket()}
 function renderTradeSelect(){let s=document.getElementById("tradeCard");s.innerHTML=state.cards.length?state.cards.map(c=>`<option value="${c.id}">${c.name} — ${c.rarity}</option>`).join(""):'<option value="">Aucune carte à échanger</option>';s.disabled=!state.cards.length}
 function tradeCard(){if(!state.cards.length)return;let id=document.getElementById("tradeCard").value,idx=state.cards.findIndex(c=>c.id===id);if(idx<0)return;let old=state.cards.splice(idx,1)[0],fresh=makeCard();state.cards.push(fresh);save();document.getElementById("tradeResult").innerHTML=`Tu as échangé <b>${old.name}</b> contre <b>${fresh.name}</b> (${fresh.rarity}).`;renderTradeSelect()}
-function addStoreLog(message,detail=""){state.storeLog.unshift({message,detail});state.storeLog=state.storeLog.slice(0,12)}
-function renderManagement(){const stock=document.getElementById("storeStock"),sales=document.getElementById("storeSales"),log=document.getElementById("managementLog");if(!stock||!sales||!log)return;stock.textContent=state.stockPacks;sales.textContent=state.storeSales;log.innerHTML=state.storeLog.length?state.storeLog.map(x=>`<div class="management-log-item">${x.message}<small>${x.detail}</small></div>`).join(""):'<div class="management-log-item">Aucune activité pour le moment.<small>Fais venir tes premiers clients !</small></div>'}
-function restockPacks(){const cost=1050;if(state.coins<cost){document.getElementById("managementMessage").textContent="Pas assez de crédits : il te faut 1 050 CC pour commander 3 boosters.";return}state.coins-=cost;state.stockPacks+=3;addStoreLog("Réapprovisionnement effectué","+3 boosters en stock · −1 050 CC");document.getElementById("managementMessage").textContent="Livraison reçue : 3 boosters ajoutés à ta réserve.";save()}
-function simulateCustomers(){const count=2+Math.floor(Math.random()*4);let sold=0,earned=0,visitors=[];for(let i=0;i<count;i++){const names=["Alex","Jordan","Sam","Noah","Camille","Maxime","Léo","Sacha"];const name=names[Math.floor(Math.random()*names.length)];if(state.stockPacks>0&&Math.random()<.78){state.stockPacks--;state.storeSales++;state.coins+=650;sold++;earned+=650;visitors.push(`${name} a acheté un booster`)}else{visitors.push(state.stockPacks>0?`${name} a regardé les rayons sans acheter`:`${name} est reparti : rupture de stock`)}}
-addStoreLog(`${sold} vente${sold>1?"s":""} réalisée${sold>1?"s":""}`,`${count} client${count>1?"s":""} accueilli${count>1?"s":""} · +${fmt(earned)} CC`);document.getElementById("managementMessage").textContent=sold?`${sold} booster${sold>1?"s":""} vendu${sold>1?"s":""} sur ${count} visiteurs. Tu gagnes ${fmt(earned)} CC.`:`${count} visiteurs sont passés, mais aucune vente n'a été réalisée.`;save()}
+
+const customerNames=["Alex","Camille","Jordan","Sacha","Noah","Lina","Ethan","Maya","Enzo","Jade"];
+function renderManagement(){
+ const stock=document.getElementById("shopStock");if(!stock)return;
+ document.getElementById("shopStock").textContent=fmt(state.shopStock);
+ document.getElementById("shopSales").textContent=fmt(state.shopSales);
+ document.getElementById("shopCustomers").textContent=fmt(state.shopCustomers);
+ const area=document.getElementById("customerArea");
+ area.innerHTML=state.customer?`<b>🧍 ${state.customer.name} est au comptoir.</b><br><span class="muted">« Bonjour ! Je cherche un booster Chrome Starter. »</span>`:'La boutique est calme pour le moment. Fais venir ton prochain client !';
+}
+function callCustomer(){
+ if(state.customer){document.getElementById("customerMessage").textContent="Un client attend déjà au comptoir.";return;}
+ const name=customerNames[Math.floor(Math.random()*customerNames.length)];
+ state.customer={name};save();document.getElementById("customerMessage").textContent=`${name} vient d'entrer dans la boutique.`;
+}
+function serveCustomer(){
+ if(!state.customer){document.getElementById("customerMessage").textContent="Fais d'abord venir un client.";return;}
+ if(state.shopStock<1){document.getElementById("customerMessage").textContent="Rupture de stock ! Réapprovisionne les étagères.";return;}
+ const name=state.customer.name;state.shopStock-=1;state.shopSales+=1;state.shopCustomers+=1;state.coins+=650;state.customer=null;save();
+ document.getElementById("customerMessage").textContent=`Vente réussie ! ${name} a acheté un booster pour 650 CC.`;
+}
+function restockPacks(){
+ if(state.coins<1500){document.getElementById("customerMessage").textContent="Il te faut 1 500 CC pour commander cinq boosters.";return;}
+ state.coins-=1500;state.shopStock+=5;save();document.getElementById("customerMessage").textContent="Livraison reçue : 5 boosters ajoutés au stock !";
+}
+
 function updateUI(){document.getElementById("coins").textContent=fmt(state.coins);document.getElementById("statCards").textContent=state.cards.length;document.getElementById("statPlayers").textContent=new Set(state.cards.map(c=>c.name)).size;document.getElementById("statPacks").textContent=state.packs;document.getElementById("recent").innerHTML=state.cards.length?state.cards.slice(-4).reverse().map(cardHTML).join(""):'<div class="empty">Ta collection commence ici. Ton premier booster t’attend.</div>';renderTradeSelect();renderManagement()}
 updateUI();
 
