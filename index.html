@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>COURTSIDE COLLECT — Prototype V0.8</title>
+<title>COURTSIDE COLLECT — Prototype V0.9</title>
 <style>
 :root{--bg:#080b12;--panel:#111827;--panel2:#172235;--line:#263449;--muted:#91a0b7;--white:#f4f7fb;--cyan:#70e1f5;--gold:#f3c96b}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 70% -15%,#243c58 0,transparent 42%),var(--bg);color:var(--white);font:15px/1.45 Inter,Segoe UI,Arial,sans-serif}
@@ -93,6 +93,29 @@ background:radial-gradient(ellipse at 50% 35%,#314b66 0,#17283b 48%,#09111c 100%
 .management-log-item{padding:11px 13px;border-radius:10px;background:#111c2b;border:1px solid #263449;color:#dbe7f5}
 .management-log-item small{display:block;color:#91a0b7;margin-top:3px}
 @media(max-width:700px){.management-grid{grid-template-columns:1fr}.management-stat{padding:14px}}
+
+/* V0.9 — finition originale inspirée des cartes chrome */
+.card{padding:5px;border-radius:16px;background:linear-gradient(125deg,#fff 0%,#aebbc9 9%,#f8fbff 18%,#718399 31%,#f7fbff 43%,#8b9bad 56%,#fff 69%,#75869a 82%,#f8fbff 100%);box-shadow:0 13px 28px #0008,inset 0 0 0 1px #ffffffc9;}
+.card-inner{border:1px solid #ffffffb8;border-radius:12px;background:linear-gradient(155deg,#24364b 0%,#101b2b 48%,#344b62 100%);box-shadow:inset 0 0 22px #d9efff24;}
+.card-inner:before{background:linear-gradient(112deg,transparent 8%,#ffffff08 27%,#fff9 39%,#a5e8ff40 44%,#ffffff0c 51%,transparent 68%);mix-blend-mode:screen;}
+.card-inner:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.23;background:repeating-linear-gradient(135deg,transparent 0 7px,#c9f5ff18 8px 9px,transparent 10px 17px);}
+.card-top,.card-bottom,.portrait,.player{position:relative;z-index:2;}
+.brand{letter-spacing:2.4px;text-shadow:0 1px 4px #0008;}
+.rarity{background:#07111c99;border-color:#e8f7ffb0;box-shadow:0 0 8px #bdeaff55;}
+.portrait{filter:drop-shadow(0 5px 9px #0009);}
+.player b{letter-spacing:.3px;text-transform:uppercase;text-shadow:0 2px 7px #000;}
+.card.gold{background:linear-gradient(120deg,#fff8d8,#b8a16b,#fff4c6,#8b7138,#fff);}
+.card.gold .card-inner{background:linear-gradient(145deg,#5c4b2b,#172333 58%,#80662f);}
+.card.epic{background:linear-gradient(120deg,#fff,#c6a5ed,#f9eaff,#7446a5,#fff);}
+.card.epic .card-inner{background:linear-gradient(145deg,#49306b,#121b2d 58%,#68448d);}
+.card.legendary{background:linear-gradient(120deg,#fff2d1,#e1a45d,#fff4df,#b65d49,#fff);}
+.card.legendary .card-inner{background:linear-gradient(145deg,#713c2b,#151b2b 58%,#8a4b30);}
+.card.exceptional{background:linear-gradient(120deg,#fff,#74e9ee,#e7c7ff,#fff2a6,#fff);}
+.card.exceptional .card-inner{background:linear-gradient(145deg,#155b70,#111a30 55%,#583f83);}
+.pulled-card .card-inner{box-shadow:inset 0 0 28px #d9efff30,0 0 18px #bdeaff22;}
+@keyframes chromeShine{0%{background-position:-180% 0}100%{background-position:180% 0}}
+.card:hover .card-inner:before{background-size:220% 100%;animation:chromeShine 1.1s ease;}
+
 </style></head>
 <body>
 <header><div class="logo">COURTSIDE <span>COLLECT</span></div><div class="wallet">◈ <span id="coins">2 500</span> CC</div></header>
