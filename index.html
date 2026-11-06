@@ -115,6 +115,30 @@ background:radial-gradient(ellipse at 50% 35%,#314b66 0,#17283b 48%,#09111c 100%
 @media(prefers-reduced-motion:reduce){.chrome-card:before,.chrome-card.exceptional{animation:none!important}}
 
 .chrome-card .portrait img{width:100%;height:100%;max-height:112px;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 5px 8px #0009);border-radius:8px}.chrome-card .portrait .fallback-initials{width:108px;height:88px}.chrome-card .portrait{overflow:hidden;min-height:105px}.pulled-card .chrome-card .portrait img{max-height:165px}
+
+/* V0.12 — collections multi-éditions */
+.edition-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:16px;margin:22px 0}
+.edition-pack{display:flex;gap:15px;align-items:center;padding:16px;border:1px solid #53647a;border-radius:18px;background:linear-gradient(145deg,#1b2a3c,#101722);min-width:0;overflow:hidden}
+.edition-art{width:112px;height:168px;flex:0 0 112px;border-radius:12px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;font-size:17px;font-weight:900;letter-spacing:1px;box-shadow:0 12px 25px #0008;transform:rotate(-4deg);text-shadow:0 2px 8px #0008}
+.edition-art b{font-size:20px}.edition-art small{font-size:8px;letter-spacing:2px;margin-top:8px}
+.edition-chrome .edition-art{color:#102235;background:linear-gradient(145deg,#fff,#91d9ef 30%,#233b60 65%,#f5ffff)}
+.edition-cosmic .edition-art{color:#fff;background:radial-gradient(circle at 70% 25%,#f8c5ff,#713bb2 22%,#111c50 55%,#050914 85%)}
+.edition-black .edition-art{color:#fff;background:linear-gradient(145deg,#050505,#34383f 42%,#08090d 70%,#a9b0ba)}
+.edition-inception .edition-art{color:#fff;background:linear-gradient(145deg,#f07b54,#7b3e91 45%,#173c70 75%,#e9bd72)}
+.edition-info{min-width:0;flex:1}.edition-info h3{font-size:19px;margin:8px 0}.edition-info p{font-size:12px;color:#b7c6d9;line-height:1.45;margin:6px 0}.edition-info .price{margin:8px 0;font-size:20px}
+.edition-pack button{font-size:12px;padding:9px 11px;white-space:nowrap}
+.chrome-card.edition-cosmic{background:linear-gradient(135deg,#f7c8ff,#6836a6,#07133d,#b4edff)!important}
+.chrome-card.edition-cosmic .card-inner{background:radial-gradient(circle at 50% 25%,#7346b5,#11143c 62%,#050817)!important}
+.chrome-card.edition-black{background:linear-gradient(135deg,#fff,#343a43,#050505,#b8c0ca)!important}
+.chrome-card.edition-black .card-inner{background:linear-gradient(145deg,#050505,#252a32 55%,#08090d)!important}
+.chrome-card.edition-inception{background:linear-gradient(135deg,#ffc18e,#ad4c73,#3a4c8e,#f5d68c)!important}
+.chrome-card.edition-inception .card-inner{background:linear-gradient(145deg,#a54e69,#343b70 55%,#17213d)!important}
+@media(max-width:560px){.edition-pack{gap:12px;padding:13px}.edition-art{width:94px;height:145px;flex-basis:94px;font-size:14px}.edition-art b{font-size:17px}.edition-info h3{font-size:17px}.edition-info p{font-size:11px}.edition-info button{white-space:normal}}
+#tearPack.edition-cosmic{color:#fff;background:radial-gradient(circle at 70% 25%,#f8c5ff,#713bb2 22%,#111c50 55%,#050914 85%);border-color:#d7b8ff;box-shadow:0 18px 55px #8b54ff55,inset 0 0 22px #fff5}
+#tearPack.edition-black{color:#fff;background:linear-gradient(145deg,#050505,#34383f 42%,#08090d 70%,#a9b0ba);border-color:#b9c2cd;box-shadow:0 18px 55px #b5c1d244,inset 0 0 22px #fff5}
+#tearPack.edition-inception{color:#fff;background:linear-gradient(145deg,#f07b54,#7b3e91 45%,#173c70 75%,#e9bd72);border-color:#f2c0a0;box-shadow:0 18px 55px #c36b9c55,inset 0 0 22px #fff5}
+
+
 </style></head>
 <body>
 <header><div class="logo">COURTSIDE <span>COLLECT</span></div><div class="wallet">◈ <span id="coins">2 500</span> CC</div></header>
@@ -167,10 +191,15 @@ background:radial-gradient(ellipse at 50% 35%,#314b66 0,#17283b 48%,#09111c 100%
 
 <div class="stats"><div class="stat"><small>Cartes possédées</small><strong id="statCards">0</strong></div><div class="stat"><small>Joueurs différents</small><strong id="statPlayers">0</strong></div><div class="stat"><small>Boosters ouverts</small><strong id="statPacks">0</strong></div></div>
 <div class="section-head"><h2>Dernières acquisitions</h2><button onclick="showPage('collection')">Voir la collection</button></div><div id="recent" class="cards"></div>
-<div class="notice">Prototype V0.9 : design Chrome holographique des cartes, ouverture animée des boosters, boutique HTML stylisée (vue 2.5D), monnaie et échanges simulés, progression sauvegardée localement sur ce navigateur.</div>
+<div class="notice">Prototype V0.12 : quatre éditions de boosters et designs dédiés des cartes, ouverture animée des boosters, boutique HTML stylisée (vue 2.5D), monnaie et échanges simulés, progression sauvegardée localement sur ce navigateur.</div>
 </section>
 <section id="shop" class="hidden"><div class="eyebrow">La boutique</div><h1>Choisis ton booster.</h1><p class="sub">Chaque booster contient 8 cartes. Chaque carte a ses propres chances de rareté.</p>
-<div class="pack"><div class="pack-art">COURT<br>SIDE<br><span style="font-size:13px;letter-spacing:4px">CHROME</span></div><div class="pack-info"><span class="badge">SÉRIE 01 · STARTER</span><h3>Chrome Starter Pack</h3><p>8 cartes NBA · 5 niveaux de rareté · Chances de trouver une carte exceptionnelle.</p><div class="price">500 CC</div><button onclick="openPack()">Ouvrir un booster</button></div></div><div id="packResult"></div></section>
+<div class="edition-grid">
+ <article class="edition-pack edition-chrome"><div class="edition-art">COURTSIDE<br><b>CHROME</b><small>NBA COLLECTION</small></div><div class="edition-info"><span class="badge">SÉRIE 01 · CLASSIQUE</span><h3>Chrome Starter</h3><p>Le pack de base : reflets chrome, parallèles colorées et grandes stars NBA.</p><div class="price">500 CC</div><button onclick="openPack('chrome')">Ouvrir · 8 cartes</button></div></article>
+ <article class="edition-pack edition-cosmic"><div class="edition-art">COSMIC<br><b>CHROME</b><small>GALAXY EDITION</small></div><div class="edition-info"><span class="badge">SÉRIE 02 · COSMIQUE</span><h3>Cosmic Chrome</h3><p>Univers spatial, nébuleuses, étoiles et parallèles cosmiques exclusives.</p><div class="price">700 CC</div><button onclick="openPack('cosmic')">Ouvrir · 8 cartes</button></div></article>
+ <article class="edition-pack edition-black"><div class="edition-art">CHROME<br><b>BLACK</b><small>PREMIUM EDITION</small></div><div class="edition-info"><span class="badge">SÉRIE 03 · PREMIUM</span><h3>Chrome Black</h3><p>Design noir profond, finition métallique et tirages premium plus rares.</p><div class="price">900 CC</div><button onclick="openPack('black')">Ouvrir · 8 cartes</button></div></article>
+ <article class="edition-pack edition-inception"><div class="edition-art">COURTSIDE<br><b>INCEPTION</b><small>ART COLLECTION</small></div><div class="edition-info"><span class="badge">SÉRIE 04 · ARTISTIQUE</span><h3>Inception</h3><p>Compositions artistiques, couleurs intenses et cartes au style audacieux.</p><div class="price">800 CC</div><button onclick="openPack('inception')">Ouvrir · 8 cartes</button></div></article>
+</div><p class="muted" style="margin-top:14px">Chaque booster contient 8 cartes. Les designs et noms sont des créations originales inspirées de grandes tendances des cartes de collection.</p><div id="packResult"></div></section>
 <section id="management" class="hidden">
 <div class="eyebrow">Gestion du magasin · Nouveau en V0.8</div><h1>Fais tourner ta boutique.</h1>
 <p class="sub">Accueille des collectionneurs, vends des boosters et réapprovisionne ton stock. Les ventes sont simulées et sauvegardées sur cet appareil.</p>
@@ -274,19 +303,23 @@ const rarities=["Base","Rare","Epic","Legendary","Exceptional"];
 function save(){try{window.localStorage.setItem("cc_save",JSON.stringify(state))}catch(e){console.warn("Sauvegarde impossible dans ce navigateur.",e)}updateUI()}
 function fmt(n){return n.toLocaleString("fr-FR")}
 function rarityRoll(){let r=Math.random();if(r<.01)return"Exceptional";if(r<.05)return"Legendary";if(r<.15)return"Epic";if(r<.40)return"Rare";return"Base"}
-function makeCard(){let p=players[Math.floor(Math.random()*players.length)],r=rarityRoll();return{id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),...p,rarity:r,serial:r==="Exceptional"?"1/1":r==="Legendary"?"01/10":r==="Epic"?" /99":r==="Rare"?" /299":"",value:{Base:70,Rare:180,Epic:550,Legendary:1800,Exceptional:5000}[r]}}
-function cardHTML(c){let cls=c.rarity==="Exceptional"?"exceptional":c.rarity==="Legendary"?"legendary":c.rarity==="Epic"?"epic":c.rarity==="Rare"?"rare":"base";let portrait=c.photo?`<img src="${c.photo}" alt="${c.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'">`+`<span class="fallback-initials" style="display:none">${c.initials}</span>`:`<span>${c.initials}</span>`;return `<div class="card chrome-card ${cls}"><div class="card-inner" style="--glow:${c.color}"><div class="card-top"><span class="brand">COURTSIDE CHROME</span><span class="rarity">${c.rarity}</span></div><div class="portrait">${portrait}</div><div class="player"><b>${c.name}</b><small>${c.team}</small><div class="teamline">${c.abbr} · SEASON 01</div></div><div class="card-bottom"><span class="overall">${c.ovr}</span><span class="brand">CC ${c.serial||"BASE"}</span></div></div></div>`}
+const editions={chrome:{name:"Chrome Starter",price:500,brand:"COURTSIDE CHROME"},cosmic:{name:"Cosmic Chrome",price:700,brand:"COSMIC CHROME"},black:{name:"Chrome Black",price:900,brand:"CHROME BLACK"},inception:{name:"Inception",price:800,brand:"INCEPTION"}};
+let activeEdition="chrome";
+function makeCard(editionId=activeEdition){let p=players[Math.floor(Math.random()*players.length)],r=rarityRoll();return{id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),...p,edition:editionId,editionName:editions[editionId].name,rarity:r,serial:r==="Exceptional"?"1/1":r==="Legendary"?"01/10":r==="Epic"?" /99":r==="Rare"?" /299":"",value:{Base:70,Rare:180,Epic:550,Legendary:1800,Exceptional:5000}[r]}}
+function cardHTML(c){let cls=c.rarity==="Exceptional"?"exceptional":c.rarity==="Legendary"?"legendary":c.rarity==="Epic"?"epic":c.rarity==="Rare"?"rare":"base";let portrait=c.photo?`<img src="${c.photo}" alt="${c.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'">`+`<span class="fallback-initials" style="display:none">${c.initials}</span>`:`<span>${c.initials}</span>`;let ed=c.edition||"chrome",brand=editions[ed]?.brand||"COURTSIDE CHROME";return `<div class="card chrome-card edition-${ed} ${cls}"><div class="card-inner" style="--glow:${c.color}"><div class="card-top"><span class="brand">${brand}</span><span class="rarity">${c.rarity}</span></div><div class="portrait">${portrait}</div><div class="player"><b>${c.name}</b><small>${c.team}</small><div class="teamline">${c.abbr} · SEASON 01</div></div><div class="card-bottom"><span class="overall">${c.ovr}</span><span class="brand">CC ${c.serial||"BASE"}</span></div></div></div>`}
 function showPage(page){document.querySelectorAll("main section").forEach(s=>s.classList.add("hidden"));document.getElementById(page).classList.remove("hidden");document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));if(page==="collection")renderCollection();if(page==="market")renderMarket();if(page==="trades")renderTradeSelect();if(page==="management")renderManagement()}
 document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
 let currentPackCards=[],currentPackIndex=0,packBusy=false;
-function openPack(){
+function openPack(editionId="chrome"){
  if(packBusy)return;
+ if(!editions[editionId])editionId="chrome";activeEdition=editionId;const selectedEdition=editions[editionId];
  if(!state||!Array.isArray(state.cards)){state={coins:2500,cards:[],packs:0};}
- if(Number(state.coins)<500){alert("Pas assez de crédits ! Il te faut 500 CC.");return;}
+ if(Number(state.coins)<selectedEdition.price){alert(`Pas assez de crédits ! Il te faut ${selectedEdition.price} CC.`);return;}
  const modal=document.getElementById("packModal"),intro=document.getElementById("packIntro"),stage=document.getElementById("cardRevealStage"),pack=document.getElementById("tearPack");
  if(!modal||!intro||!stage||!pack){alert("L'ouverture du booster n'a pas pu se lancer. Recharge la page.");return;}
- packBusy=true;state.coins-=500;state.packs=(Number(state.packs)||0)+1;
- currentPackCards=Array.from({length:8},()=>makeCard());state.cards.push(...currentPackCards);save();
+ packBusy=true;state.coins-=selectedEdition.price;state.packs=(Number(state.packs)||0)+1;
+ document.querySelector("#packIntro .badge").textContent=`COURTSIDE COLLECT · ${selectedEdition.brand}`;document.querySelector("#tearPack span").innerHTML=selectedEdition.brand.replace(" ","<br>");pack.classList.remove("edition-chrome","edition-cosmic","edition-black","edition-inception");pack.classList.add(`edition-${editionId}`);
+ currentPackCards=Array.from({length:8},()=>makeCard(editionId));state.cards.push(...currentPackCards);save();
  document.getElementById("packResult").innerHTML="";modal.classList.add("active");intro.classList.remove("hidden");stage.classList.add("hidden");
  pack.classList.remove("ripping");void pack.offsetWidth;
  setTimeout(()=>{pack.classList.add("ripping");setTimeout(()=>{intro.classList.add("hidden");stage.classList.remove("hidden");currentPackIndex=0;showPackCard();},850);},250);
