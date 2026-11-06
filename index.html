@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>COURTSIDE COLLECT — Prototype V0.7</title>
+<title>COURTSIDE COLLECT — Prototype V0.8</title>
 <style>
 :root{--bg:#080b12;--panel:#111827;--panel2:#172235;--line:#263449;--muted:#91a0b7;--white:#f4f7fb;--cyan:#70e1f5;--gold:#f3c96b}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 70% -15%,#243c58 0,transparent 42%),var(--bg);color:var(--white);font:15px/1.45 Inter,Segoe UI,Arial,sans-serif}
@@ -81,6 +81,18 @@ background:radial-gradient(ellipse at 50% 35%,#314b66 0,#17283b 48%,#09111c 100%
 .modal-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}.secondary-btn{background:#1b2b40;color:#eaf5ff;border:1px solid #49627e}.pack-result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:14px;margin-top:18px}
 @media(max-width:600px){.tear-pack{width:140px;height:205px}.pulled-card .card-inner{height:300px}}
 
+
+/* Gestion du magasin — V0.8 */
+.management-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:22px 0}
+.management-stat{background:linear-gradient(145deg,#17263a,#101827);border:1px solid #2b405a;border-radius:15px;padding:18px}
+.management-stat span{display:block;color:#9eafc5;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1px}
+.management-stat strong{display:block;font-size:27px;color:#f3c96b;margin-top:7px}
+.management-actions{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.management-actions .secondary-btn{background:#1b2b40;color:#eaf5ff;border:1px solid #49627e}
+.management-log{display:grid;gap:8px;margin-top:14px}
+.management-log-item{padding:11px 13px;border-radius:10px;background:#111c2b;border:1px solid #263449;color:#dbe7f5}
+.management-log-item small{display:block;color:#91a0b7;margin-top:3px}
+@media(max-width:700px){.management-grid{grid-template-columns:1fr}.management-stat{padding:14px}}
 </style></head>
 <body>
 <header><div class="logo">COURTSIDE <span>COLLECT</span></div><div class="wallet">◈ <span id="coins">2 500</span> CC</div></header>
@@ -88,6 +100,7 @@ background:radial-gradient(ellipse at 50% 35%,#314b66 0,#17283b 48%,#09111c 100%
 <aside><nav class="nav">
 <button class="active" data-page="home">⌂ &nbsp; Accueil</button>
 <button data-page="shop">▣ &nbsp; Boutique</button>
+<button data-page="management">▦ &nbsp; Gestion du magasin</button>
 <button data-page="collection">▤ &nbsp; Collection</button>
 <button data-page="market">⇄ &nbsp; Marché</button>
 <button data-page="trades">♧ &nbsp; Échanges</button>
@@ -134,13 +147,18 @@ background:radial-gradient(ellipse at 50% 35%,#314b66 0,#17283b 48%,#09111c 100%
 <div class="section-head"><h2>Dernières acquisitions</h2><button onclick="showPage('collection')">Voir la collection</button></div><div id="recent" class="cards"></div>
 <div class="notice">Prototype V0.7 : ouverture animée des boosters, boutique HTML stylisée (vue 2.5D), monnaie et échanges simulés, progression sauvegardée localement sur ce navigateur.</div>
 </section>
+<section id="management" class="hidden"><div class="eyebrow">Gestion quotidienne</div><h1>Ton magasin.</h1><p class="sub">Gère tes boosters en rayon, réapprovisionne ton stock et accueille des collectionneurs. Les clients et ventes sont simulés.</p>
+<div class="management-grid"><div class="management-stat"><span>Boosters en stock</span><strong id="storeStock">6</strong></div><div class="management-stat"><span>Prix de vente</span><strong>650 CC</strong></div><div class="management-stat"><span>Ventes totales</span><strong id="storeSales">0</strong></div></div>
+<div class="panel"><h3>Réserve et ventes</h3><p class="muted">Un booster acheté en gros coûte 350 CC. Chaque vente rapporte 650 CC.</p><div class="management-actions"><button onclick="simulateCustomers()">Faire venir des clients</button><button class="secondary-btn" onclick="restockPacks()">Réapprovisionner · 3 boosters / 1 050 CC</button></div><div id="managementMessage" class="muted" aria-live="polite">Ta boutique est prête à accueillir ses premiers clients.</div></div>
+<div class="section-head"><h2>Journal de la boutique</h2><span class="badge">Activité récente</span></div><div id="managementLog" class="management-log"><div class="management-log-item">Bienvenue dans ta boutique.<small>Les ventes apparaîtront ici.</small></div></div>
+</section>
 <section id="shop" class="hidden"><div class="eyebrow">La boutique</div><h1>Choisis ton booster.</h1><p class="sub">Chaque booster contient 8 cartes. Chaque carte a ses propres chances de rareté.</p>
 <div class="pack"><div class="pack-art">COURT<br>SIDE<br><span style="font-size:13px;letter-spacing:4px">CHROME</span></div><div class="pack-info"><span class="badge">SÉRIE 01 · STARTER</span><h3>Chrome Starter Pack</h3><p>8 cartes NBA · 5 niveaux de rareté · Chances de trouver une carte exceptionnelle.</p><div class="price">500 CC</div><button onclick="openPack()">Ouvrir un booster</button></div></div><div id="packResult"></div></section>
 <section id="collection" class="hidden"><div class="eyebrow">Ton classeur</div><h1>Ma collection.</h1><p class="sub">Toutes tes cartes obtenues, doublons compris.</p><div class="toolbar"><input id="search" placeholder="Rechercher un joueur…" oninput="renderCollection()"><select id="filter" onchange="renderCollection()"><option value="all">Toutes les raretés</option><option>Base</option><option>Rare</option><option>Epic</option><option>Legendary</option><option>Exceptional</option></select></div><div id="collectionCards" class="cards"></div></section>
 <section id="market" class="hidden"><div class="eyebrow">Marché interne</div><h1>Le marché.</h1><p class="sub">Achète des cartes proposées par la simulation avec tes crédits. Les transactions sont fictives et locales.</p><div id="marketList" class="panel"></div></section>
 <section id="trades" class="hidden"><div class="eyebrow">Entre collectionneurs</div><h1>Échanges.</h1><p class="sub">Prépare un échange de démonstration. Pour l'instant, les autres collectionneurs sont simulés.</p><div class="panel"><h3>Échange rapide</h3><p class="muted">Choisis une de tes cartes et échange-la contre une carte aléatoire de valeur proche.</p><select id="tradeCard" style="width:100%;padding:12px;background:#111c2b;color:white;border:1px solid #263449;border-radius:9px"></select><p><button onclick="tradeCard()">Proposer un échange</button></p><div id="tradeResult" class="muted"></div></div><div class="notice">Les échanges multijoueurs nécessiteront ensuite un serveur, des comptes et une protection contre la fraude.</div></section>
 <footer>COURTSIDE COLLECT · Prototype indépendant non affilié à la NBA ou à ses équipes. Les notes affichées sont des valeurs de jeu fictives.</footer>
-<p class="notice">V0.7 : ouverture corrigée des boosters de 8 cartes, sauvegarde tolérante et déplacement 2.5D en HTML. Une véritable boutique 3D nécessitera ensuite un moteur 3D.</p>
+<p class="notice">V0.8 : gestion du stock, réapprovisionnement et clients simulés. Une véritable boutique 3D nécessitera ensuite un moteur 3D.</p>
 </main></div>
 
 <div id="packModal" class="pack-modal" role="dialog" aria-modal="true" aria-label="Ouverture du booster">
@@ -172,13 +190,16 @@ let state={coins:2500,cards:[],packs:0};
 try{const stored=JSON.parse(window.localStorage.getItem("cc_save")||"null");if(stored&&typeof stored==="object")state={...state,...stored};}catch(e){console.warn("Sauvegarde locale indisponible : session temporaire.",e)}
 if(!Number.isFinite(Number(state.coins)))state.coins=2500;
 state.coins=Number(state.coins);if(!Array.isArray(state.cards))state.cards=[];if(!Number.isFinite(Number(state.packs)))state.packs=0;state.packs=Number(state.packs);
+if(!Number.isFinite(Number(state.stockPacks)))state.stockPacks=6;state.stockPacks=Math.max(0,Math.floor(Number(state.stockPacks)));
+if(!Number.isFinite(Number(state.storeSales)))state.storeSales=0;state.storeSales=Math.max(0,Math.floor(Number(state.storeSales)));
+if(!Array.isArray(state.storeLog))state.storeLog=[];
 const rarities=["Base","Rare","Epic","Legendary","Exceptional"];
 function save(){try{window.localStorage.setItem("cc_save",JSON.stringify(state))}catch(e){console.warn("Sauvegarde impossible dans ce navigateur.",e)}updateUI()}
 function fmt(n){return n.toLocaleString("fr-FR")}
 function rarityRoll(){let r=Math.random();if(r<.01)return"Exceptional";if(r<.05)return"Legendary";if(r<.15)return"Epic";if(r<.40)return"Rare";return"Base"}
 function makeCard(){let p=players[Math.floor(Math.random()*players.length)],r=rarityRoll();return{id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),...p,rarity:r,serial:r==="Exceptional"?"1/1":r==="Legendary"?"01/10":r==="Epic"?" /99":r==="Rare"?" /299":"",value:{Base:70,Rare:180,Epic:550,Legendary:1800,Exceptional:5000}[r]}}
 function cardHTML(c){let cls=c.rarity==="Exceptional"?"exceptional":c.rarity==="Legendary"?"legendary":c.rarity==="Epic"?"epic":c.rarity==="Rare"?"gold":"";return `<div class="card ${cls}"><div class="card-inner" style="--glow:${c.color}"><div class="card-top"><span class="brand">COURTSIDE</span><span class="rarity">${c.rarity}</span></div><div class="portrait">${c.initials}</div><div class="player"><b>${c.name}</b><small>${c.team}</small><div class="teamline">${c.abbr} · SEASON 01</div></div><div class="card-bottom"><span class="overall">${c.ovr}</span><span class="brand">CC ${c.serial||"BASE"}</span></div></div></div>`}
-function showPage(page){document.querySelectorAll("main section").forEach(s=>s.classList.add("hidden"));document.getElementById(page).classList.remove("hidden");document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));if(page==="collection")renderCollection();if(page==="market")renderMarket();if(page==="trades")renderTradeSelect()}
+function showPage(page){document.querySelectorAll("main section").forEach(s=>s.classList.add("hidden"));document.getElementById(page).classList.remove("hidden");document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));if(page==="collection")renderCollection();if(page==="market")renderMarket();if(page==="trades")renderTradeSelect();if(page==="management")renderManagement()}
 document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
 let currentPackCards=[],currentPackIndex=0,packBusy=false;
 function openPack(){
@@ -201,7 +222,12 @@ function renderMarket(){let stock=[...players].sort(()=>Math.random()-.5).slice(
 function buyMarket(i,price){if(state.coins<price){alert("Pas assez de crédits !");return}let p=window.marketStock[i];state.coins-=price;state.cards.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,5),...p,serial:"",value:price});save();renderMarket()}
 function renderTradeSelect(){let s=document.getElementById("tradeCard");s.innerHTML=state.cards.length?state.cards.map(c=>`<option value="${c.id}">${c.name} — ${c.rarity}</option>`).join(""):'<option value="">Aucune carte à échanger</option>';s.disabled=!state.cards.length}
 function tradeCard(){if(!state.cards.length)return;let id=document.getElementById("tradeCard").value,idx=state.cards.findIndex(c=>c.id===id);if(idx<0)return;let old=state.cards.splice(idx,1)[0],fresh=makeCard();state.cards.push(fresh);save();document.getElementById("tradeResult").innerHTML=`Tu as échangé <b>${old.name}</b> contre <b>${fresh.name}</b> (${fresh.rarity}).`;renderTradeSelect()}
-function updateUI(){document.getElementById("coins").textContent=fmt(state.coins);document.getElementById("statCards").textContent=state.cards.length;document.getElementById("statPlayers").textContent=new Set(state.cards.map(c=>c.name)).size;document.getElementById("statPacks").textContent=state.packs;document.getElementById("recent").innerHTML=state.cards.length?state.cards.slice(-4).reverse().map(cardHTML).join(""):'<div class="empty">Ta collection commence ici. Ton premier booster t’attend.</div>';renderTradeSelect()}
+function addStoreLog(message,detail=""){state.storeLog.unshift({message,detail});state.storeLog=state.storeLog.slice(0,12)}
+function renderManagement(){const stock=document.getElementById("storeStock"),sales=document.getElementById("storeSales"),log=document.getElementById("managementLog");if(!stock||!sales||!log)return;stock.textContent=state.stockPacks;sales.textContent=state.storeSales;log.innerHTML=state.storeLog.length?state.storeLog.map(x=>`<div class="management-log-item">${x.message}<small>${x.detail}</small></div>`).join(""):'<div class="management-log-item">Aucune activité pour le moment.<small>Fais venir tes premiers clients !</small></div>'}
+function restockPacks(){const cost=1050;if(state.coins<cost){document.getElementById("managementMessage").textContent="Pas assez de crédits : il te faut 1 050 CC pour commander 3 boosters.";return}state.coins-=cost;state.stockPacks+=3;addStoreLog("Réapprovisionnement effectué","+3 boosters en stock · −1 050 CC");document.getElementById("managementMessage").textContent="Livraison reçue : 3 boosters ajoutés à ta réserve.";save()}
+function simulateCustomers(){const count=2+Math.floor(Math.random()*4);let sold=0,earned=0,visitors=[];for(let i=0;i<count;i++){const names=["Alex","Jordan","Sam","Noah","Camille","Maxime","Léo","Sacha"];const name=names[Math.floor(Math.random()*names.length)];if(state.stockPacks>0&&Math.random()<.78){state.stockPacks--;state.storeSales++;state.coins+=650;sold++;earned+=650;visitors.push(`${name} a acheté un booster`)}else{visitors.push(state.stockPacks>0?`${name} a regardé les rayons sans acheter`:`${name} est reparti : rupture de stock`)}}
+addStoreLog(`${sold} vente${sold>1?"s":""} réalisée${sold>1?"s":""}`,`${count} client${count>1?"s":""} accueilli${count>1?"s":""} · +${fmt(earned)} CC`);document.getElementById("managementMessage").textContent=sold?`${sold} booster${sold>1?"s":""} vendu${sold>1?"s":""} sur ${count} visiteurs. Tu gagnes ${fmt(earned)} CC.`:`${count} visiteurs sont passés, mais aucune vente n'a été réalisée.`;save()}
+function updateUI(){document.getElementById("coins").textContent=fmt(state.coins);document.getElementById("statCards").textContent=state.cards.length;document.getElementById("statPlayers").textContent=new Set(state.cards.map(c=>c.name)).size;document.getElementById("statPacks").textContent=state.packs;document.getElementById("recent").innerHTML=state.cards.length?state.cards.slice(-4).reverse().map(cardHTML).join(""):'<div class="empty">Ta collection commence ici. Ton premier booster t’attend.</div>';renderTradeSelect();renderManagement()}
 updateUI();
 
 // Contrôles V0.5 : déplacement clavier (ZQSD/WASD/flèches), tactile et orientation.
