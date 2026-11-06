@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>COURTSIDE COLLECT — Prototype V0.10</title>
+<title>COURTSIDE COLLECT — Prototype V0.13</title>
 <style>
 :root{--bg:#080b12;--panel:#111827;--panel2:#172235;--line:#263449;--muted:#91a0b7;--white:#f4f7fb;--cyan:#70e1f5;--gold:#f3c96b}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 70% -15%,#243c58 0,transparent 42%),var(--bg);color:var(--white);font:15px/1.45 Inter,Segoe UI,Arial,sans-serif}
@@ -138,6 +138,47 @@ background:radial-gradient(ellipse at 50% 35%,#314b66 0,#17283b 48%,#09111c 100%
 #tearPack.edition-black{color:#fff;background:linear-gradient(145deg,#050505,#34383f 42%,#08090d 70%,#a9b0ba);border-color:#b9c2cd;box-shadow:0 18px 55px #b5c1d244,inset 0 0 22px #fff5}
 #tearPack.edition-inception{color:#fff;background:linear-gradient(145deg,#f07b54,#7b3e91 45%,#173c70 75%,#e9bd72);border-color:#f2c0a0;box-shadow:0 18px 55px #c36b9c55,inset 0 0 22px #fff5}
 
+
+
+/* V0.13 — refonte premium des cartes COURTSIDE COLLECT */
+.cards{grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:18px}
+.chrome-card{padding:5px!important;border-radius:17px!important;box-shadow:0 16px 34px #0009,0 0 0 1px #ffffff45,inset 0 0 0 1px #ffffffa8!important;transform:translateZ(0)}
+.chrome-card .card-inner{height:326px!important;padding:12px 11px 10px!important;border-radius:12px!important;display:flex!important;flex-direction:column!important;justify-content:space-between!important;isolation:isolate;background:linear-gradient(160deg,#1c2d40 0%,#101721 46%,#26394d 100%)!important;box-shadow:inset 0 0 0 1px #ffffff55,inset 0 0 30px #ffffff0d!important}
+.chrome-card .card-inner:before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(118deg,transparent 15%,#ffffff08 28%,#ffffff55 39%,#ffffff08 49%,transparent 65%),radial-gradient(ellipse at 50% 35%,var(--glow) 0%,transparent 58%)!important;opacity:.82}
+.chrome-card .card-inner:after{content:"";position:absolute;inset:7px;border:1px solid #ffffff30;border-radius:8px;z-index:2;pointer-events:none;background:repeating-linear-gradient(135deg,transparent 0 13px,#ffffff06 14px,transparent 15px 26px)}
+.chrome-card .card-top,.chrome-card .portrait-wrap,.chrome-card .player,.chrome-card .card-bottom,.chrome-card .card-edition-stamp,.chrome-card .card-index-mark{position:relative;z-index:3}
+.chrome-card .card-top{min-height:22px}.chrome-card .brand{font-size:8px;letter-spacing:1.7px;font-weight:1000}.chrome-card .rarity{font-size:8px;letter-spacing:1.1px;padding:4px 7px;background:#06101d88;border:1px solid #ffffff9c;text-shadow:0 1px 4px #000}
+.chrome-card .portrait-wrap{height:174px;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;margin:2px -5px 0;background:linear-gradient(180deg,#ffffff08,transparent 70%);border-bottom:1px solid #ffffff55}
+.chrome-card .portrait{height:100%;width:100%;min-height:0;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;font-size:70px;letter-spacing:-3px}
+.chrome-card .portrait img{width:100%;height:100%;max-height:none!important;object-fit:cover;object-position:center 16%;filter:drop-shadow(0 7px 8px #000b) saturate(1.08);border-radius:0!important;mix-blend-mode:normal}
+.chrome-card .portrait span{width:130px;height:130px;border-radius:50% 50% 12% 12%;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 25%,#ffffff55,#ffffff0b 68%,transparent 72%);border:0;border-bottom:2px solid #ffffff55;font-size:36px}
+.chrome-card .portrait .fallback-initials{width:130px;height:130px}
+.chrome-card .portrait-watermark{position:absolute;right:4px;bottom:3px;font-size:42px;font-weight:1000;letter-spacing:-3px;color:#ffffff18;line-height:1}
+.chrome-card .player{text-align:left;text-shadow:0 2px 7px #000b;padding:5px 2px 0}
+.chrome-card .player-kicker{display:block;color:#ffffffa8;font-size:7px;letter-spacing:1.8px;font-weight:900;margin-bottom:3px}
+.chrome-card .player b{font-size:17px;line-height:1.05;letter-spacing:.1px;text-transform:uppercase;display:block;text-wrap:balance}
+.chrome-card .player small{display:block;color:#e1eaf4;font-size:10px;margin-top:4px}
+.chrome-card .teamline{font-size:8px;letter-spacing:1.5px;color:#c5d7e8;margin-top:3px}.chrome-card .teamline i{font-style:normal;color:#ffffff80;padding:0 3px}
+.chrome-card .card-bottom{border-top:1px solid #ffffff55;padding-top:7px;display:flex;align-items:center;justify-content:space-between}
+.chrome-card .overall-wrap{display:flex;align-items:baseline;gap:4px}.chrome-card .overall{font-size:26px;line-height:1;font-weight:1000;text-shadow:0 2px 9px #000}.chrome-card .overall-wrap small{font-size:7px;letter-spacing:1.4px;color:#ffffffb5;font-weight:900}
+.chrome-card .serial-wrap{text-align:right;display:flex;flex-direction:column;gap:1px}.chrome-card .serial-wrap small{font-size:6px;letter-spacing:1.4px;color:#ffffff9e}.chrome-card .serial-wrap strong{font-size:12px;letter-spacing:1px}
+.chrome-card .card-edition-stamp{position:absolute;left:12px;bottom:3px;font-size:5px;letter-spacing:1.5px;color:#ffffff65;font-weight:900}.chrome-card .card-index-mark{position:absolute;right:12px;bottom:3px;font-size:5px;letter-spacing:1.2px;color:#ffffff65;font-weight:900}
+/* Parallèles et finitions distinctes selon rareté */
+.chrome-card.base{background:linear-gradient(125deg,#f9fcff,#778796,#fff,#8b9ba9,#e9f4fb)!important}
+.chrome-card.rare{background:linear-gradient(125deg,#e8fbff,#4ba5d0,#f7ffff,#26759e,#d8f7ff)!important}
+.chrome-card.epic{background:linear-gradient(125deg,#ffeaff,#a65be0,#fff,#7135a9,#f3d7ff)!important}
+.chrome-card.legendary{background:linear-gradient(125deg,#fff3c0,#bd8621,#fff8d9,#8c5b12,#ffe7a0)!important;box-shadow:0 16px 34px #0009,0 0 18px #e7b94c55,inset 0 0 0 1px #fff!important}
+.chrome-card.exceptional{background:linear-gradient(125deg,#fff,#53e8ef,#a36aff,#fff2a8,#70f5cb,#fff)!important;background-size:220% 220%!important;animation:prismShift 7s ease infinite;box-shadow:0 16px 34px #0009,0 0 24px #7ceeff88,inset 0 0 0 1px #fff!important}
+.chrome-card.exceptional .card-inner{box-shadow:inset 0 0 36px #8cf7ff55!important}
+/* Identité propre à chaque collection */
+.chrome-card.edition-cosmic .card-inner{background:radial-gradient(ellipse at 50% 25%,#6945a6 0%,#191b4b 43%,#070b1c 100%)!important}
+.chrome-card.edition-cosmic .card-inner:before{background:radial-gradient(circle at 18% 20%,#fff9 0 1px,transparent 2px),radial-gradient(circle at 82% 35%,#d9b5ff 0 1px,transparent 2px),radial-gradient(circle at 65% 70%,#fff8 0 1px,transparent 2px),linear-gradient(120deg,transparent 20%,#ffffff50 40%,transparent 60%)!important}
+.chrome-card.edition-black .card-inner{background:linear-gradient(155deg,#17191e,#050608 55%,#252a32)!important}
+.chrome-card.edition-black .card-inner:after{border-color:#c4ccd455;box-shadow:inset 0 0 18px #ffffff0a}
+.chrome-card.edition-inception .card-inner{background:linear-gradient(145deg,#a64f64 0%,#4d3b70 48%,#182e50 100%)!important}
+.chrome-card.edition-inception .card-inner:before{background:linear-gradient(135deg,transparent 20%,#ffcf9b55 42%,transparent 58%),radial-gradient(ellipse at 50% 35%,var(--glow),transparent 60%)!important}
+@media(max-width:600px){.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.chrome-card .card-inner{height:300px!important;padding:10px 9px 9px!important}.chrome-card .portrait-wrap{height:151px}.chrome-card .player b{font-size:14px}.chrome-card .portrait img{object-position:center 15%}.chrome-card .overall{font-size:23px}}
+@media(prefers-reduced-motion:reduce){.chrome-card.exceptional{animation:none!important}}
 
 </style></head>
 <body>
@@ -306,7 +347,7 @@ function rarityRoll(){let r=Math.random();if(r<.01)return"Exceptional";if(r<.05)
 const editions={chrome:{name:"Chrome Starter",price:500,brand:"COURTSIDE CHROME"},cosmic:{name:"Cosmic Chrome",price:700,brand:"COSMIC CHROME"},black:{name:"Chrome Black",price:900,brand:"CHROME BLACK"},inception:{name:"Inception",price:800,brand:"INCEPTION"}};
 let activeEdition="chrome";
 function makeCard(editionId=activeEdition){let p=players[Math.floor(Math.random()*players.length)],r=rarityRoll();return{id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),...p,edition:editionId,editionName:editions[editionId].name,rarity:r,serial:r==="Exceptional"?"1/1":r==="Legendary"?"01/10":r==="Epic"?" /99":r==="Rare"?" /299":"",value:{Base:70,Rare:180,Epic:550,Legendary:1800,Exceptional:5000}[r]}}
-function cardHTML(c){let cls=c.rarity==="Exceptional"?"exceptional":c.rarity==="Legendary"?"legendary":c.rarity==="Epic"?"epic":c.rarity==="Rare"?"rare":"base";let portrait=c.photo?`<img src="${c.photo}" alt="${c.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'">`+`<span class="fallback-initials" style="display:none">${c.initials}</span>`:`<span>${c.initials}</span>`;let ed=c.edition||"chrome",brand=editions[ed]?.brand||"COURTSIDE CHROME";return `<div class="card chrome-card edition-${ed} ${cls}"><div class="card-inner" style="--glow:${c.color}"><div class="card-top"><span class="brand">${brand}</span><span class="rarity">${c.rarity}</span></div><div class="portrait">${portrait}</div><div class="player"><b>${c.name}</b><small>${c.team}</small><div class="teamline">${c.abbr} · SEASON 01</div></div><div class="card-bottom"><span class="overall">${c.ovr}</span><span class="brand">CC ${c.serial||"BASE"}</span></div></div></div>`}
+function cardHTML(c){let cls=c.rarity==="Exceptional"?"exceptional":c.rarity==="Legendary"?"legendary":c.rarity==="Epic"?"epic":c.rarity==="Rare"?"rare":"base";let portrait=c.photo?`<img src="${c.photo}" alt="${c.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'">`+`<span class="fallback-initials" style="display:none">${c.initials}</span>`:`<span>${c.initials}</span>`;let ed=c.edition||"chrome",brand=editions[ed]?.brand||"COURTSIDE CHROME";let serial=c.serial||"UNNUMBERED";return `<div class="card chrome-card edition-${ed} ${cls}"><div class="card-inner" style="--glow:${c.color}"><div class="card-top"><span class="brand">${brand}</span><span class="rarity">${c.rarity}</span></div><div class="portrait-wrap"><div class="portrait">${portrait}</div><span class="portrait-watermark">${c.abbr}</span></div><div class="player"><span class="player-kicker">COURTSIDE COLLECT · NBA</span><b>${c.name}</b><small>${c.team}</small><div class="teamline">${c.abbr} <i>•</i> SEASON 01</div></div><div class="card-bottom"><span class="overall-wrap"><strong class="overall">${c.ovr}</strong><small>OVR</small></span><span class="serial-wrap"><small>LIMITED EDITION</small><strong>${serial}</strong></span></div><span class="card-edition-stamp">${ed.toUpperCase()} SERIES</span><span class="card-index-mark">CC / 01</span></div></div>`}
 function showPage(page){document.querySelectorAll("main section").forEach(s=>s.classList.add("hidden"));document.getElementById(page).classList.remove("hidden");document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));if(page==="collection")renderCollection();if(page==="market")renderMarket();if(page==="trades")renderTradeSelect();if(page==="management")renderManagement()}
 document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
 let currentPackCards=[],currentPackIndex=0,packBusy=false;
