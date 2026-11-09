@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>COURTSIDE COLLECT — V0.17</title>
+<title>COURTSIDE COLLECT — V0.19</title>
 <style>
 :root{--bg:#080b12;--panel:#111827;--panel2:#172235;--line:#263449;--muted:#91a0b7;--white:#f4f7fb;--cyan:#70e1f5;--gold:#f3c96b}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 70% -15%,#243c58 0,transparent 42%),var(--bg);color:var(--white);font:15px/1.45 Inter,Segoe UI,Arial,sans-serif}
@@ -287,8 +287,24 @@ button{background:linear-gradient(135deg,#f0d99e,#b58b47);color:#17130a;border:1
 .chrome-card.parallel-autographe .card-special-stamp{color:#ffe08a;border-color:#e6bd67;background:#30230ddd}
 .chrome-card.parallel-patch .card-special-stamp{color:#f2d19a;border-color:#c99b54;background:#302315dd}
 .chrome-card.parallel-holo .card-special-stamp{color:#a8f2ff;border-color:#79ddeb;background:#102c3ddd}
+
+/* Patch textile façon carte memorabilia */
+.chrome-card.parallel-patch .portrait-wrap{overflow:hidden}
+.chrome-card .relic-patch{position:absolute;z-index:6;right:9px;bottom:9px;width:48px;height:43px;padding:3px;border-radius:5px;background:linear-gradient(145deg,#f4e5bd,#8b6a39 45%,#ead7a5);box-shadow:0 3px 8px #000b,inset 0 0 0 1px #fff9;transform:rotate(4deg)}
+.chrome-card .relic-patch:before{content:"";position:absolute;inset:3px;border:1px dashed #fff9;border-radius:3px;pointer-events:none}
+.chrome-card .relic-fabric{height:27px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:1000;letter-spacing:-.5px;text-shadow:0 1px 3px #000;background-color:var(--patch-color);background-image:repeating-linear-gradient(0deg,#ffffff20 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,#00000018 0 1px,transparent 1px 4px),linear-gradient(135deg,transparent 35%,#ffffff35 36% 43%,transparent 44%)}
+.chrome-card .relic-patch small{display:block;text-align:center;color:#302516;font-size:5px;line-height:10px;font-weight:1000;letter-spacing:.7px}
+.chrome-card.parallel-patch .portrait-watermark{right:58px}
+@media(max-width:700px){.chrome-card .relic-patch{width:43px;height:40px;right:7px;bottom:7px}.chrome-card .relic-fabric{height:25px}}
+
+/* Signature à l'encre façon carte Topps autographe */
+.chrome-card.parallel-autographe .portrait-wrap{overflow:hidden}
+.chrome-card .auto-signature{position:absolute;z-index:7;left:9px;right:9px;bottom:9px;height:34px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:4px;background:linear-gradient(180deg,#fffef0ed,#f1e7c9f2);border:1px solid #c9b98e;box-shadow:0 2px 7px #0008;transform:rotate(-2deg)}
+.chrome-card .signature-ink{font-family:"Brush Script MT","Segoe Script",cursive;font-size:23px;font-style:italic;font-weight:900;line-height:23px;letter-spacing:1px;color:#173c79;text-shadow:0 0 .5px #173c79;transform:rotate(-4deg)}
+.chrome-card .auto-signature small{font-family:Arial,sans-serif;font-size:5px;line-height:7px;letter-spacing:1.4px;font-weight:1000;color:#5c5139}
+.chrome-card.parallel-autographe .portrait-watermark{right:8px;top:8px}
 </style></head>
-<body data-version="0.17">
+<body data-version="0.19">
 <header><div class="logo">COURTSIDE <span>COLLECT</span></div><div class="wallet">◈ <span id="coins">2 500</span> CC</div></header>
 <div class="layout">
 <aside><div class="nav-caption">ESPACE COLLECTIONNEUR</div><nav class="nav">
@@ -341,7 +357,7 @@ button{background:linear-gradient(135deg,#f0d99e,#b58b47);color:#17130a;border:1
 
 <div class="stats"><div class="stat"><small>Cartes possédées</small><strong id="statCards">0</strong></div><div class="stat"><small>Joueurs différents</small><strong id="statPlayers">0</strong></div><div class="stat"><small>Boosters ouverts</small><strong id="statPacks">0</strong></div></div>
 <div class="section-head"><h2>Dernières acquisitions</h2><button onclick="showPage('collection')">Voir la collection</button></div><div id="recent" class="cards"></div>
-<div class="notice">COURTSIDE COLLECT V0.17 : cartes parallèles, autographes et patchs repensée, quatre éditions de boosters et designs dédiés des cartes, ouverture animée des boosters, boutique HTML stylisée (vue 2.5D), monnaie et échanges simulés, progression sauvegardée localement sur ce navigateur.</div>
+<div class="notice">COURTSIDE COLLECT V0.19 : signatures à l’encre et patchs textiles façon cartes Topps repensée, quatre éditions de boosters et designs dédiés des cartes, ouverture animée des boosters, boutique HTML stylisée (vue 2.5D), monnaie et échanges simulés, progression sauvegardée localement sur ce navigateur.</div>
 </section>
 <section id="shop" class="hidden"><div class="eyebrow">La boutique</div><h1>Choisis ton booster.</h1><p class="sub">Chaque booster contient 8 cartes. Chaque carte a ses propres chances de rareté.</p>
 <div class="edition-grid">
@@ -512,7 +528,7 @@ function makeCard(editionId=activeEdition){
  const serial=r==="Exceptional"?"1/1":r==="Legendary"?`${String(1+Math.floor(Math.random()*10)).padStart(2,"0")}/10`:r==="Epic"?`${String(1+Math.floor(Math.random()*99)).padStart(2,"0")}/99`:r==="Rare"?`${String(1+Math.floor(Math.random()*299)).padStart(3,"0")}/299`:"";
  return{id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),...p,edition:editionId,editionName:editions[editionId].name,rarity:r,parallel,serial,value:{Base:70,Rare:180,Epic:550,Legendary:1800,Exceptional:5000}[r]};
 }
-function cardHTML(c){let cls=c.rarity==="Exceptional"?"exceptional":c.rarity==="Legendary"?"legendary":c.rarity==="Epic"?"epic":c.rarity==="Rare"?"rare":"base";let portrait=c.photo?`<img src="${c.photo}" alt="${c.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'">`+`<span class="fallback-initials" style="display:none">${c.initials}</span>`:`<span>${c.initials}</span>`;let ed=c.edition||"chrome",brand=editions[ed]?.brand||"COURTSIDE CHROME";let serial=c.serial||"UNNUMBERED";let parallel=c.parallel&&c.parallel!=="Base"?c.parallel:"";return `<div class="card chrome-card edition-${ed} ${cls} ${parallel?`parallel-${parallel.toLowerCase()}`:""}"><div class="card-inner" style="--glow:${c.color}"><div class="card-top"><span class="brand">${brand}</span><span class="rarity">${c.rarity}</span></div>${parallel?`<span class="card-special-stamp">${parallel==="Autographe"?"✍ AUTOGRAPHE":parallel==="Patch"?"▣ PATCH RELIC":"✦ HOLO PARALLEL"}</span>`:""}<div class="portrait-wrap"><div class="portrait">${portrait}</div><span class="portrait-watermark">${c.abbr}</span></div><div class="player"><span class="player-kicker">COURTSIDE COLLECT · NBA</span><b>${c.name}</b><small>${c.team}</small><div class="teamline">${c.abbr} <i>•</i> SEASON 01</div></div><div class="card-bottom"><span class="overall-wrap"><strong class="overall">${c.ovr}</strong><small>OVR</small></span><span class="serial-wrap"><small>LIMITED EDITION</small><strong>${serial}</strong></span></div><span class="card-edition-stamp">${ed.toUpperCase()} SERIES</span><span class="card-index-mark">CC / 01</span></div></div>`}
+function cardHTML(c){let cls=c.rarity==="Exceptional"?"exceptional":c.rarity==="Legendary"?"legendary":c.rarity==="Epic"?"epic":c.rarity==="Rare"?"rare":"base";let portrait=c.photo?`<img src="${c.photo}" alt="${c.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'">`+`<span class="fallback-initials" style="display:none">${c.initials}</span>`:`<span>${c.initials}</span>`;let ed=c.edition||"chrome",brand=editions[ed]?.brand||"COURTSIDE CHROME";let serial=c.serial||"UNNUMBERED";let parallel=c.parallel&&c.parallel!=="Base"?c.parallel:"";return `<div class="card chrome-card edition-${ed} ${cls} ${parallel?`parallel-${parallel.toLowerCase()}`:""}"><div class="card-inner" style="--glow:${c.color}"><div class="card-top"><span class="brand">${brand}</span><span class="rarity">${c.rarity}</span></div>${parallel?`<span class="card-special-stamp">${parallel==="Autographe"?"✍ AUTOGRAPHE":parallel==="Patch"?"▣ PATCH RELIC":"✦ HOLO PARALLEL"}</span>`:""}<div class="portrait-wrap"><div class="portrait">${portrait}</div><span class="portrait-watermark">${c.abbr}</span>${parallel==="Autographe"?`<div class="auto-signature" aria-label="Signature du joueur"><span class="signature-ink">${(c.name||"Joueur").split(" ").map(x=>x[0]||"").join("")}</span><small>AUTHENTIC AUTO</small></div>`:""}${parallel==="Patch"?`<div class="relic-patch" style="--patch-color:${c.color||"#d7a84b"}" aria-label="Patch textile aux couleurs de ${c.team}"><span class="relic-fabric">${c.abbr}</span><small>GAME USED</small></div>`:""}</div><div class="player"><span class="player-kicker">COURTSIDE COLLECT · NBA</span><b>${c.name}</b><small>${c.team}</small><div class="teamline">${c.abbr} <i>•</i> SEASON 01</div></div><div class="card-bottom"><span class="overall-wrap"><strong class="overall">${c.ovr}</strong><small>OVR</small></span><span class="serial-wrap"><small>LIMITED EDITION</small><strong>${serial}</strong></span></div><span class="card-edition-stamp">${ed.toUpperCase()} SERIES</span><span class="card-index-mark">CC / 01</span></div></div>`}
 function showPage(page){document.querySelectorAll("main section").forEach(s=>s.classList.add("hidden"));document.getElementById(page).classList.remove("hidden");document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));if(page==="collection")renderCollection();if(page==="sales")renderSales();if(page==="market")renderMarket();if(page==="trades")renderTradeSelect();if(page==="management")renderManagement();if(page==="profile")renderProfile()}
 document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
 let currentPackCards=[],currentPackIndex=0,packBusy=false;
