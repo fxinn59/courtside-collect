@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>COURTSIDE COLLECT — V0.15</title>
+<title>COURTSIDE COLLECT — V0.16</title>
 <style>
 :root{--bg:#080b12;--panel:#111827;--panel2:#172235;--line:#263449;--muted:#91a0b7;--white:#f4f7fb;--cyan:#70e1f5;--gold:#f3c96b}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 70% -15%,#243c58 0,transparent 42%),var(--bg);color:var(--white);font:15px/1.45 Inter,Segoe UI,Arial,sans-serif}
@@ -253,7 +253,7 @@ footer{color:#747d89}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 
 
-/* ================= COURTSIDE COLLECT V0.15 — PREMIUM INTERFACE ================= */
+/* ================= COURTSIDE COLLECT V0.16 — PREMIUM INTERFACE ================= */
 :root{--bg:#07070b;--panel:#111116;--panel2:#19191f;--line:#303039;--muted:#9999a8;--white:#f5f3f7;--cyan:#c7c7d1;--gold:#e8c77b;--violet:#9b78ff;--chrome:#d8d9e1;--surface:rgba(20,20,27,.88)}
 html{scroll-behavior:smooth}body{background:radial-gradient(ellipse at 82% -14%,rgba(111,80,173,.22),transparent 34%),radial-gradient(ellipse at 10% 0%,rgba(201,169,103,.10),transparent 28%),#07070b;color:var(--white);font-family:Inter,"Segoe UI",Arial,sans-serif;letter-spacing:.08px}
 body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.13;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:46px 46px;mask-image:linear-gradient(to bottom,black,transparent 80%)}
@@ -273,8 +273,12 @@ button{background:linear-gradient(135deg,#f0d99e,#b58b47);color:#17130a;border:1
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 
 .profile-hero{display:flex;align-items:center;gap:22px;padding:25px;margin:24px 0;background:radial-gradient(circle at 12% 50%,#45364d 0,transparent 35%),linear-gradient(110deg,#201d27,#111117 68%,#211c2c);border-color:#66533c}.profile-emblem{width:76px;height:76px;flex:0 0 76px;display:grid;place-items:center;border-radius:20px;background:linear-gradient(140deg,#fff2c9,#c19a52 48%,#70512b);color:#17130a;font-size:23px;font-weight:1000;box-shadow:0 0 30px #d9b56b22}.profile-copy{flex:1}.profile-copy h2{font-size:25px;margin:10px 0 2px}.profile-copy p{margin:5px 0}.profile-level{display:grid;gap:5px;text-align:right}.profile-level small{font-size:8px;letter-spacing:1.5px;color:#a6a1af}.profile-level strong{font-size:34px;color:var(--gold)}.profile-level span{font-size:10px;color:#aaa}.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.profile-grid .panel{padding:22px}.profile-progress{height:9px;border-radius:20px;background:#302d38;overflow:hidden;margin:22px 0 12px}.profile-progress div{height:100%;width:0;background:linear-gradient(90deg,#9270e8,#e8c77b);border-radius:20px;box-shadow:0 0 15px #a17dff66;transition:width .35s}.profile-line{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #ffffff12;color:#aaa7b2;font-size:12px}.profile-line:last-child{border:0}.profile-line b{color:#f0e1bd}@media(max-width:600px){.profile-hero{padding:17px;gap:13px;flex-wrap:wrap}.profile-emblem{width:58px;height:58px;flex-basis:58px;border-radius:15px}.profile-copy h2{font-size:20px}.profile-level{width:100%;display:flex;align-items:center;text-align:left;gap:10px;border-top:1px solid #ffffff12;padding-top:12px}.profile-level strong{font-size:23px}.profile-grid{grid-template-columns:1fr}.profile-grid .panel{padding:17px}}
-/* End V0.15 interface layer — original gameplay and save engine intentionally preserved */
+/* End V0.16 interface layer — original gameplay and save engine intentionally preserved */
 
+
+/* COURTSIDE COLLECT V0.16 additions */
+.cc16-form-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(130px,190px) auto;gap:12px;align-items:end}.cc16-form-grid label{display:grid;gap:7px;color:var(--muted);font-size:12px;font-weight:800}.cc16-form-grid select,.cc16-form-grid input{width:100%;padding:12px;border-radius:10px;background:#0b1220;color:white;border:1px solid var(--line);min-width:0}.cc16-market-form{margin:20px 0 28px}.cc16-listing{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid #ffffff12}.cc16-listing:last-child{border-bottom:0}.cc16-listing-meta{display:flex;align-items:center;gap:12px;min-width:0}.cc16-listing-meta .card{transform:scale(.35);transform-origin:left center;width:74px;height:102px;margin-right:-42px;flex:0 0 74px}.cc16-listing-meta b{display:block}.cc16-listing-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}.cc16-listing-actions strong{color:var(--gold);white-space:nowrap}.cc16-challenge-list{display:grid;gap:12px}.cc16-challenge{padding:18px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(135deg,#121b2a,#0d1420);display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}.cc16-challenge h3{margin:0 0 5px}.cc16-challenge p{margin:0;color:var(--muted);font-size:13px}.cc16-progress{height:7px;border-radius:20px;background:#263449;overflow:hidden;margin-top:12px}.cc16-progress span{display:block;height:100%;background:linear-gradient(90deg,#8c6be8,#e8c16d);border-radius:20px}.cc16-reward{color:var(--gold);font-weight:900;white-space:nowrap}.cc16-claim{min-width:116px}.cc16-claimed{color:#8fd6aa;font-size:12px;font-weight:900}.cc16-collection-tools{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 18px}.cc16-collection-tools select{padding:11px;border-radius:10px;background:#111827;color:white;border:1px solid var(--line)}
+@media(max-width:700px){.cc16-form-grid{grid-template-columns:1fr 1fr}.cc16-form-grid button{grid-column:1/-1}.cc16-listing{grid-template-columns:1fr}.cc16-listing-actions{justify-content:flex-start}.cc16-challenge{grid-template-columns:1fr}.cc16-claim{width:100%}}
 </style></head>
 <body data-version="0.15">
 <header><div class="logo">COURTSIDE <span>COLLECT</span></div><div class="wallet">◈ <span id="coins">2 500</span> CC</div></header>
@@ -286,6 +290,8 @@ button{background:linear-gradient(135deg,#f0d99e,#b58b47);color:#17130a;border:1
 <button data-page="collection">▤ &nbsp; Collection</button> <button data-page="sales">€ &nbsp; Mes ventes</button>
 <button data-page="market">⇄ &nbsp; Marché</button>
 <button data-page="trades">♧ &nbsp; Échanges</button> <button data-page="profile">◉ &nbsp; Mon profil</button>
+<button data-page="marketplace">▣ &nbsp; Marketplace</button>
+<button data-page="challenges">★ &nbsp; Défis & récompenses</button>
 </nav></aside>
 <main>
 <section id="home">
@@ -327,7 +333,7 @@ button{background:linear-gradient(135deg,#f0d99e,#b58b47);color:#17130a;border:1
 
 <div class="stats"><div class="stat"><small>Cartes possédées</small><strong id="statCards">0</strong></div><div class="stat"><small>Joueurs différents</small><strong id="statPlayers">0</strong></div><div class="stat"><small>Boosters ouverts</small><strong id="statPacks">0</strong></div></div>
 <div class="section-head"><h2>Dernières acquisitions</h2><button onclick="showPage('collection')">Voir la collection</button></div><div id="recent" class="cards"></div>
-<div class="notice">COURTSIDE COLLECT V0.15 : interface premium repensée, quatre éditions de boosters et designs dédiés des cartes, ouverture animée des boosters, boutique HTML stylisée (vue 2.5D), monnaie et échanges simulés, progression sauvegardée localement sur ce navigateur.</div>
+<div class="notice">COURTSIDE COLLECT V0.16 : interface premium repensée, quatre éditions de boosters et designs dédiés des cartes, ouverture animée des boosters, boutique HTML stylisée (vue 2.5D), monnaie et échanges simulés, progression sauvegardée localement sur ce navigateur.</div>
 </section>
 <section id="shop" class="hidden"><div class="eyebrow">La boutique</div><h1>Choisis ton booster.</h1><p class="sub">Chaque booster contient 8 cartes. Chaque carte a ses propres chances de rareté.</p>
 <div class="edition-grid">
@@ -360,11 +366,11 @@ button{background:linear-gradient(135deg,#f0d99e,#b58b47);color:#17130a;border:1
  <button onclick="restockPacks()">Acheter 5 boosters · 1 500 CC</button>
 </div>
 </section>
-<section id="collection" class="hidden"><div class="eyebrow">Ton classeur</div><h1>Ma collection.</h1><p class="sub">Toutes tes cartes obtenues, doublons compris.</p><div class="toolbar"><input id="search" placeholder="Rechercher un joueur…" oninput="renderCollection()"><select id="filter" onchange="renderCollection()"><option value="all">Toutes les raretés</option><option>Base</option><option>Rare</option><option>Epic</option><option>Legendary</option><option>Exceptional</option></select></div><div id="collectionCards" class="cards"></div></section>
+<section id="collection" class="hidden"><div class="eyebrow">Ton classeur</div><h1>Ma collection.</h1><p class="sub">Toutes tes cartes obtenues, doublons compris.</p><div class="toolbar"><input id="search" placeholder="Rechercher un joueur…" oninput="renderCollection()"><select id="filter" onchange="renderCollection()"><option value="all">Toutes les raretés</option><option>Base</option><option>Rare</option><option>Epic</option><option>Legendary</option><option>Exceptional</option></select><select id="cc16EditionFilter" onchange="renderCollection()"><option value="all">Toutes les éditions</option><option value="chrome">Chrome Starter</option><option value="cosmic">Cosmic Chrome</option><option value="black">Chrome Black</option><option value="inception">Inception</option></select><select id="cc16Sort" onchange="renderCollection()"><option value="recent">Plus récentes</option><option value="name">Nom A–Z</option><option value="rarity">Rareté</option><option value="value">Valeur estimée</option></select></div><div id="collectionCards" class="cards"></div></section>
 <section id="sales" class="hidden"><div class="eyebrow">Historique du collectionneur</div><h1>Mes ventes.</h1><p class="sub">Retrouve les cartes vendues et les crédits gagnés.</p><div class="stats"><div class="stat"><small>Cartes vendues</small><strong id="salesCount">0</strong></div><div class="stat"><small>Crédits gagnés</small><strong id="salesTotal">0 CC</strong></div><div class="stat"><small>Dernière vente</small><strong id="lastSale">—</strong></div></div><div id="salesList" class="panel"></div></section> <section id="market" class="hidden"><div class="eyebrow">Marché interne</div><h1>Le marché.</h1><p class="sub">Achète des cartes proposées par la simulation avec tes crédits. Les transactions sont fictives et locales.</p><div class="section-head"><h2>Cartes disponibles</h2><button class="secondary-btn" onclick="refreshMarket()">Actualiser la sélection</button></div><div id="marketList" class="panel"></div></section>
 <section id="trades" class="hidden"><div class="eyebrow">Entre collectionneurs</div><h1>Échanges.</h1><p class="sub">Prépare un échange de démonstration. Pour l'instant, les autres collectionneurs sont simulés.</p><div class="panel"><h3>Échange rapide</h3><p class="muted">Choisis une de tes cartes et échange-la contre une carte aléatoire de valeur proche.</p><select id="tradeCard" style="width:100%;padding:12px;background:#111c2b;color:white;border:1px solid #263449;border-radius:9px"></select><p><button onclick="tradeCard()">Proposer un échange</button></p><div id="tradeResult" class="muted"></div></div><div class="notice">Les échanges multijoueurs nécessiteront ensuite un serveur, des comptes et une protection contre la fraude.</div></section>
 <footer>COURTSIDE COLLECT · Prototype indépendant non affilié à la NBA ou à ses équipes. Les notes affichées sont des valeurs de jeu fictives.</footer>
-<p class="notice">V0.14 : ouverture des boosters de 8 cartes, sauvegarde tolérante et déplacement 2.5D en HTML. Une véritable boutique 3D nécessitera ensuite un moteur 3D.</p>
+<p class="notice">V0.16 : marketplace locale, annonces personnalisées, progression XP, défis et récompenses. Fonctionnement navigateur avec sauvegarde locale.</p>
 
 <section id="profile" class="hidden">
   <div class="eyebrow">Identité du collectionneur</div>
@@ -384,6 +390,23 @@ button{background:linear-gradient(135deg,#f0d99e,#b58b47);color:#17130a;border:1
     <div class="panel"><div class="eyebrow">Progression</div><h2>Ton parcours</h2><div class="profile-progress"><div id="profileProgressBar"></div></div><p class="muted" id="profileProgressText">Encore 10 cartes pour atteindre le prochain niveau.</p></div>
     <div class="panel"><div class="eyebrow">Activité</div><h2>Historique du club</h2><div class="profile-line"><span>Cartes vendues</span><b id="profileSold">0</b></div><div class="profile-line"><span>Crédits gagnés</span><b id="profileEarned">0 CC</b></div><div class="profile-line"><span>Solde actuel</span><b id="profileBalance">2 500 CC</b></div></div>
   </div>
+</section>
+
+<section id="marketplace" class="hidden">
+ <div class="eyebrow">COURTSIDE EXCHANGE · V0.16</div><h1>Marketplace.</h1>
+ <p class="sub">Mets tes cartes en vente au prix que tu choisis, suis tes annonces et retrouve les cartes de la sélection simulée. Les annonces restent enregistrées sur cet appareil : il ne s'agit pas encore d'un marché multijoueur en ligne.</p>
+ <div class="stats"><div class="stat"><small>Annonces actives</small><strong id="cc16ListingCount">0</strong></div><div class="stat"><small>Valeur demandée</small><strong id="cc16ListingValue">0 CC</strong></div><div class="stat"><small>Crédits disponibles</small><strong id="cc16MarketBalance">0 CC</strong></div></div>
+ <div class="panel cc16-market-form"><div class="eyebrow">Créer une annonce</div><h2>Vendre une carte de ta collection</h2><p class="muted">La carte sera retirée de ta collection pendant sa mise en vente. Tu peux annuler l'annonce à tout moment.</p>
+  <div class="cc16-form-grid"><label>Carte à vendre<select id="cc16SellCard"></select></label><label>Prix demandé (CC)<input id="cc16AskPrice" type="number" min="1" max="999999" value="500" inputmode="numeric"></label><button onclick="cc16CreateListing()">Mettre en vente</button></div><div id="cc16MarketMessage" class="muted" aria-live="polite"></div>
+ </div>
+ <div class="section-head"><h2>Mes annonces</h2><span class="badge">Stock personnel</span></div><div id="cc16MyListings" class="panel"></div>
+ <div class="notice">La marketplace communautaire avec acheteurs réels, comptes et synchronisation entre appareils nécessitera un service serveur. Cette version ajoute un système local complet sans prétendre simuler de vrais autres joueurs.</div>
+</section>
+<section id="challenges" class="hidden">
+ <div class="eyebrow">COLLECTOR CLUB · PROGRESSION</div><h1>Défis & récompenses.</h1><p class="sub">Chaque action fait progresser ton profil. Termine les objectifs, récupère tes crédits et monte de niveau.</p>
+ <div class="profile-hero panel"><div class="profile-emblem">XP</div><div class="profile-copy"><span class="badge">COLLECTOR RANK</span><h2 id="cc16RankName">Rookie Collector</h2><p class="muted">Une collection se construit carte après carte.</p></div><div class="profile-level"><small>EXPÉRIENCE TOTALE</small><strong id="cc16XpTotal">0 XP</strong><span id="cc16LevelLabel">Niveau 1</span></div></div>
+ <div class="stats"><div class="stat"><small>Défis terminés</small><strong id="cc16Done">0 / 5</strong></div><div class="stat"><small>Récompenses récupérées</small><strong id="cc16Claimed">0</strong></div><div class="stat"><small>Prochain niveau</small><strong id="cc16NextLevel">100 XP</strong></div></div>
+ <div class="section-head"><h2>Objectifs du collectionneur</h2><span class="badge">Jalons permanents</span></div><div id="cc16ChallengeList" class="cc16-challenge-list"></div>
 </section>
 </main></div>
 
@@ -545,4 +568,67 @@ paintStore();
 
 
 function renderProfile(){const cards=Array.isArray(state.cards)?state.cards:[],sales=Array.isArray(state.sales)?state.sales:[],playersCount=new Set(cards.map(c=>c.name)).size,level=Math.floor(cards.length/10)+1,progress=cards.length%10,earned=sales.reduce((n,x)=>n+(Number(x.price)||0),0);const set=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value};set("profileLevel",String(level).padStart(2,"0"));set("profileXp",`${progress} / 10 cartes`);set("profileCards",fmt(cards.length));set("profilePlayers",fmt(playersCount));set("profilePacks",fmt(state.packs||0));set("profileSold",fmt(sales.length));set("profileEarned",fmt(earned)+" CC");set("profileBalance",fmt(state.coins)+" CC");set("profileProgressText",`${10-progress} carte(s) avant le niveau ${String(level+1).padStart(2,"0")}.`);const bar=document.getElementById("profileProgressBar");if(bar)bar.style.width=(progress*10)+"%";}
+
+
+/* ================= COURTSIDE COLLECT V0.16 ================= */
+(function(){
+ const safeArray=v=>Array.isArray(v)?v:[];
+ state.marketListings=safeArray(state.marketListings);
+ state.marketPurchases=Number(state.marketPurchases)||0;
+ state.xp=Number(state.xp)||0;
+ state.rewardClaims=safeArray(state.rewardClaims);
+ state.totalCardsPulled=Math.max(Number(state.totalCardsPulled)||0,state.cards.length+(state.sales||[]).length,(Number(state.packs)||0)*8);
+ state.marketHistory=safeArray(state.marketHistory);
+ const oldSave=save;
+ window.save=function(){oldSave();cc16RefreshPanels()};
+ const oldUpdate=updateUI;
+ window.updateUI=function(){oldUpdate();cc16RefreshPanels()};
+ function xp(amount,reason){state.xp=(Number(state.xp)||0)+amount;state.xpLog=safeArray(state.xpLog);state.xpLog.unshift({amount,reason,date:new Date().toLocaleDateString('fr-FR')});state.xpLog=state.xpLog.slice(0,30)}
+ const originalOpenPack=openPack;
+ window.openPack=function(id){const before=Number(state.packs)||0;originalOpenPack(id);if((Number(state.packs)||0)>before){state.totalCardsPulled=(Number(state.totalCardsPulled)||0)+8;xp(80,'Booster ouvert');save()}};
+ const originalBuyMarket=buyMarket;
+ window.buyMarket=function(i){const before=state.cards.length;originalBuyMarket(i);if(state.cards.length>before){state.marketPurchases=(Number(state.marketPurchases)||0)+1;xp(45,'Achat au marché');state.totalCardsPulled=(Number(state.totalCardsPulled)||0)+1;save()}};
+ const originalSell=sellOwnedCard;
+ window.sellOwnedCard=function(id){const before=(state.sales||[]).length;originalSell(id);if((state.sales||[]).length>before){xp(30,'Carte vendue');save()}};
+ const originalServe=serveCustomer;
+ window.serveCustomer=function(){const before=Number(state.shopSales)||0;originalServe();if((Number(state.shopSales)||0)>before){xp(25,'Vente en boutique');save()}};
+ const rarityOrder={Base:1,Rare:2,Epic:3,Legendary:4,Exceptional:5};
+ window.renderCollection=function(){
+  const q=(document.getElementById('search')?.value||'').toLowerCase();const rarity=document.getElementById('filter')?.value||'all';const edition=document.getElementById('cc16EditionFilter')?.value||'all';const sort=document.getElementById('cc16Sort')?.value||'recent';
+  let arr=state.cards.filter(c=>(c.name||'').toLowerCase().includes(q)&&(rarity==='all'||c.rarity===rarity)&&(edition==='all'||(c.edition||'chrome')===edition));
+  if(sort==='name')arr.sort((a,b)=>a.name.localeCompare(b.name,'fr'));else if(sort==='rarity')arr.sort((a,b)=>(rarityOrder[b.rarity]||0)-(rarityOrder[a.rarity]||0));else if(sort==='value')arr.sort((a,b)=>resaleValue(b)-resaleValue(a));else arr.reverse();
+  document.getElementById('collectionCards').innerHTML=arr.length?arr.map(ownedCardHTML).join(''):'<div class="empty">Aucune carte ne correspond à ces filtres.</div>';
+ };
+ window.cc16CreateListing=function(){
+  const select=document.getElementById('cc16SellCard'),price=Number(document.getElementById('cc16AskPrice').value),msg=document.getElementById('cc16MarketMessage');
+  if(!select?.value){msg.textContent='Choisis une carte à mettre en vente.';return}if(!Number.isInteger(price)||price<1||price>999999){msg.textContent='Indique un prix entier entre 1 et 999 999 CC.';return}
+  const index=state.cards.findIndex(c=>c.id===select.value);if(index<0){msg.textContent='Cette carte n’est plus disponible dans ta collection.';cc16RefreshPanels();return}
+  const card=state.cards.splice(index,1)[0];state.marketListings.unshift({id:'listing_'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),card,price,createdAt:new Date().toISOString()});xp(10,'Annonce créée');save();msg.textContent=`${card.name} est maintenant en vente pour ${fmt(price)} CC.`;renderCollection();cc16RefreshPanels();
+ };
+ window.cc16CancelListing=function(id){const i=state.marketListings.findIndex(x=>x.id===id);if(i<0)return;const listing=state.marketListings.splice(i,1)[0];state.cards.push(listing.card);save();cc16RefreshPanels();renderCollection()};
+ const challenges=[
+  {id:'packs3',title:'Première série',desc:'Ouvre 3 boosters.',goal:3,reward:500,progress:()=>Number(state.packs)||0},
+  {id:'cards40',title:'Classeur bien rempli',desc:'Obtiens 40 cartes au total.',goal:40,reward:700,progress:()=>Number(state.totalCardsPulled)||state.cards.length},
+  {id:'unique10',title:'Œil de collectionneur',desc:'Collectionne 10 joueurs différents en même temps.',goal:10,reward:600,progress:()=>new Set(state.cards.map(c=>c.name)).size},
+  {id:'sales3',title:'Petit commerçant',desc:'Réalise 3 ventes de cartes.',goal:3,reward:500,progress:()=>safeArray(state.sales).length},
+  {id:'market3',title:'Chasseur de pépites',desc:'Achète 3 cartes au marché.',goal:3,reward:600,progress:()=>Number(state.marketPurchases)||0}
+ ];
+ window.cc16Claim=function(id){const c=challenges.find(x=>x.id===id);if(!c||state.rewardClaims.includes(id)||c.progress()<c.goal)return;state.rewardClaims.push(id);state.coins+=c.reward;xp(50,'Défi accompli');save();cc16RenderChallenges()};
+ window.cc16RenderChallenges=function(){
+  const done=challenges.filter(c=>c.progress()>=c.goal).length;const claimed=state.rewardClaims.length;const level=Math.floor((Number(state.xp)||0)/250)+1;const rank=level>=20?'Legend Collector':level>=10?'Elite Collector':level>=5?'All-Star Collector':'Rookie Collector';
+  const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v};set('cc16XpTotal',fmt(state.xp)+' XP');set('cc16LevelLabel','Niveau '+level);set('cc16RankName',rank);set('cc16Done',done+' / '+challenges.length);set('cc16Claimed',claimed);set('cc16NextLevel',(level*250-(Number(state.xp)||0))+' XP');
+  const host=document.getElementById('cc16ChallengeList');if(!host)return;host.innerHTML=challenges.map(c=>{const p=Math.min(c.goal,c.progress()),ready=p>=c.goal,claimedNow=state.rewardClaims.includes(c.id);return `<article class="cc16-challenge"><div><h3>${c.title}</h3><p>${c.desc} · ${p}/${c.goal}</p><div class="cc16-progress"><span style="width:${p/c.goal*100}%"></span></div></div><div style="display:grid;gap:8px;justify-items:end"><span class="cc16-reward">+${fmt(c.reward)} CC</span>${claimedNow?'<span class="cc16-claimed">✓ RÉCUPÉRÉE</span>':`<button class="cc16-claim" ${ready?'':'disabled'} onclick="cc16Claim('${c.id}')">${ready?'Récupérer':'En cours'}</button>`}</div></article>`}).join('');
+ };
+ window.cc16RefreshPanels=function(){
+  const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v};
+  const select=document.getElementById('cc16SellCard');if(select){const prev=select.value;select.innerHTML='<option value="">Sélectionner une carte…</option>'+state.cards.map(c=>`<option value="${c.id}">${c.name} · ${c.rarity} · ${c.editionName||'Chrome'}</option>`).join('');if([...select.options].some(o=>o.value===prev))select.value=prev}
+  set('cc16ListingCount',state.marketListings.length);set('cc16ListingValue',fmt(state.marketListings.reduce((n,x)=>n+(Number(x.price)||0),0))+' CC');set('cc16MarketBalance',fmt(state.coins)+' CC');
+  const host=document.getElementById('cc16MyListings');if(host)host.innerHTML=state.marketListings.length?state.marketListings.map(x=>`<div class="cc16-listing"><div class="cc16-listing-meta">${cardHTML(x.card)}<div><b>${x.card.name}</b><span class="muted">${x.card.rarity} · ${x.card.editionName||'Chrome'} · ${x.card.serial||'Sans numéro'}</span><div class="muted">Annonce locale · ${new Date(x.createdAt).toLocaleDateString('fr-FR')}</div></div></div><div class="cc16-listing-actions"><strong>${fmt(x.price)} CC</strong><button class="secondary-btn" onclick="cc16CancelListing('${x.id}')">Retirer l’annonce</button></div></div>`).join(''):'<div class="empty">Aucune annonce active. Mets une carte en vente pour commencer.</div>';
+  cc16RenderChallenges();
+ };
+ const originalShowPage=showPage;
+ window.showPage=function(page){originalShowPage(page);if(page==='marketplace'||page==='challenges')cc16RefreshPanels();if(page==='collection')renderCollection()};
+ // Initial refresh after legacy state has been migrated.
+ cc16RefreshPanels();
+})();
 </script></body></html>
