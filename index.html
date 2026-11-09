@@ -303,6 +303,21 @@ button{background:linear-gradient(135deg,#f0d99e,#b58b47);color:#17130a;border:1
 .chrome-card .signature-ink{font-family:"Brush Script MT","Segoe Script",cursive;font-size:23px;font-style:italic;font-weight:900;line-height:23px;letter-spacing:1px;color:#173c79;text-shadow:0 0 .5px #173c79;transform:rotate(-4deg)}
 .chrome-card .auto-signature small{font-family:Arial,sans-serif;font-size:5px;line-height:7px;letter-spacing:1.4px;font-weight:1000;color:#5c5139}
 .chrome-card.parallel-autographe .portrait-watermark{right:8px;top:8px}
+
+/* V0.20 — nouvelles éditions inspirées des gammes Topps */
+.edition-flagship .edition-art{color:#18202c;background:linear-gradient(145deg,#fff 0%,#d9e2ec 35%,#7892ad 68%,#f7f8fa 100%)}
+.edition-finest .edition-art{color:#fff;background:linear-gradient(135deg,#f5b83d,#e45c91 32%,#6b50c8 65%,#36c5d2)}
+.edition-pristine .edition-art{color:#f8f5ed;background:linear-gradient(145deg,#f5f1e7,#b7b4ad 25%,#343943 55%,#111319 78%,#e8dfca)}
+.chrome-card.edition-flagship{background:linear-gradient(135deg,#fff,#8da6c2,#263b56,#f5f7fb)!important}
+.chrome-card.edition-flagship .card-inner{background:linear-gradient(145deg,#e7edf5,#a8b8cb 48%,#34475f)!important;color:#111b2b}
+.chrome-card.edition-flagship .card-top,.chrome-card.edition-flagship .player-name,.chrome-card.edition-flagship .player-meta{color:#111b2b}
+.chrome-card.edition-finest{background:linear-gradient(135deg,#ffdb73,#f36ca5,#7660dc,#54d7d4)!important}
+.chrome-card.edition-finest .card-inner{background:linear-gradient(145deg,#c84c8a,#6848b4 52%,#236e91)!important}
+.chrome-card.edition-pristine{background:linear-gradient(135deg,#fff9e9,#c7c4bc,#545963,#e9e1cf)!important}
+.chrome-card.edition-pristine .card-inner{background:linear-gradient(145deg,#e4e0d6,#777b82 48%,#20242b)!important}
+#tearPack.edition-flagship{color:#142338;background:linear-gradient(145deg,#fff,#d9e2ec 35%,#7892ad 68%,#f7f8fa);border-color:#d8e2ee;box-shadow:0 18px 55px #8ca7c755,inset 0 0 22px #fff8}
+#tearPack.edition-finest{color:#fff;background:linear-gradient(135deg,#f5b83d,#e45c91 32%,#6b50c8 65%,#36c5d2);border-color:#f6a9d1;box-shadow:0 18px 55px #a45bd455,inset 0 0 22px #fff5}
+#tearPack.edition-pristine{color:#f8f5ed;background:linear-gradient(145deg,#f5f1e7,#b7b4ad 25%,#343943 55%,#111319 78%,#e8dfca);border-color:#e8dfca;box-shadow:0 18px 55px #c8c1b155,inset 0 0 22px #fff5}
 </style></head>
 <body data-version="0.19">
 <header><div class="logo">COURTSIDE <span>COLLECT</span></div><div class="wallet">◈ <span id="coins">2 500</span> CC</div></header>
@@ -357,7 +372,7 @@ button{background:linear-gradient(135deg,#f0d99e,#b58b47);color:#17130a;border:1
 
 <div class="stats"><div class="stat"><small>Cartes possédées</small><strong id="statCards">0</strong></div><div class="stat"><small>Joueurs différents</small><strong id="statPlayers">0</strong></div><div class="stat"><small>Boosters ouverts</small><strong id="statPacks">0</strong></div></div>
 <div class="section-head"><h2>Dernières acquisitions</h2><button onclick="showPage('collection')">Voir la collection</button></div><div id="recent" class="cards"></div>
-<div class="notice">COURTSIDE COLLECT V0.19 : signatures à l’encre et patchs textiles façon cartes Topps repensée, quatre éditions de boosters et designs dédiés des cartes, ouverture animée des boosters, boutique HTML stylisée (vue 2.5D), monnaie et échanges simulés, progression sauvegardée localement sur ce navigateur.</div>
+<div class="notice">COURTSIDE COLLECT V0.20 : signatures à l’encre et patchs textiles, sept éditions de boosters dont Topps Flagship, Finest et Pristine et designs dédiés des cartes, ouverture animée des boosters, boutique HTML stylisée (vue 2.5D), monnaie et échanges simulés, progression sauvegardée localement sur ce navigateur.</div>
 </section>
 <section id="shop" class="hidden"><div class="eyebrow">La boutique</div><h1>Choisis ton booster.</h1><p class="sub">Chaque booster contient 8 cartes. Chaque carte a ses propres chances de rareté.</p>
 <div class="edition-grid">
@@ -365,6 +380,9 @@ button{background:linear-gradient(135deg,#f0d99e,#b58b47);color:#17130a;border:1
  <article class="edition-pack edition-cosmic"><div class="edition-art">COSMIC<br><b>CHROME</b><small>GALAXY EDITION</small></div><div class="edition-info"><span class="badge">SÉRIE 02 · COSMIQUE</span><h3>Cosmic Chrome</h3><p>Univers spatial, nébuleuses, étoiles et parallèles cosmiques exclusives.</p><div class="price">700 CC</div><button onclick="openPack('cosmic')">Ouvrir · 8 cartes</button></div></article>
  <article class="edition-pack edition-black"><div class="edition-art">CHROME<br><b>BLACK</b><small>PREMIUM EDITION</small></div><div class="edition-info"><span class="badge">SÉRIE 03 · PREMIUM</span><h3>Chrome Black</h3><p>Design noir profond, finition métallique et tirages premium plus rares.</p><div class="price">900 CC</div><button onclick="openPack('black')">Ouvrir · 8 cartes</button></div></article>
  <article class="edition-pack edition-inception"><div class="edition-art">COURTSIDE<br><b>INCEPTION</b><small>ART COLLECTION</small></div><div class="edition-info"><span class="badge">SÉRIE 04 · ARTISTIQUE</span><h3>Inception</h3><p>Compositions artistiques, couleurs intenses et cartes au style audacieux.</p><div class="price">800 CC</div><button onclick="openPack('inception')">Ouvrir · 8 cartes</button></div></article>
+<article class="edition-pack edition-flagship"><div class="edition-art">TOPPS<br><b>FLAGSHIP</b><small>NBA COLLECTION</small></div><div class="edition-info"><span class="badge">SÉRIE 05 · CLASSIQUE</span><h3>Topps Flagship</h3><p>Stars NBA, rookies et cartes emblématiques pour une collection complète.</p><div class="price">600 CC</div><button onclick="openPack('flagship')">Ouvrir · 8 cartes</button></div></article>
+<article class="edition-pack edition-finest"><div class="edition-art">TOPPS<br><b>FINEST</b><small>COLOR EDITION</small></div><div class="edition-info"><span class="badge">SÉRIE 06 · COLORÉE</span><h3>Topps Finest</h3><p>Des designs colorés, des parallèles éclatantes et des tirages recherchés.</p><div class="price">850 CC</div><button onclick="openPack('finest')">Ouvrir · 8 cartes</button></div></article>
+<article class="edition-pack edition-pristine"><div class="edition-art">TOPPS<br><b>PRISTINE</b><small>ULTRA PREMIUM</small></div><div class="edition-info"><span class="badge">SÉRIE 07 · ULTRA PREMIUM</span><h3>Topps Pristine</h3><p>Une édition prestigieuse avec des chances renforcées de cartes rares.</p><div class="price">1 200 CC</div><button onclick="openPack('pristine')">Ouvrir · 8 cartes</button></div></article>
 </div><p class="muted" style="margin-top:14px">Chaque booster contient 8 cartes. Les designs et noms sont des créations originales inspirées de grandes tendances des cartes de collection.</p><div id="packResult"></div></section>
 <section id="management" class="hidden">
 <div class="eyebrow">Gestion du magasin · Nouveau en V0.8</div><h1>Fais tourner ta boutique.</h1>
@@ -390,7 +408,7 @@ button{background:linear-gradient(135deg,#f0d99e,#b58b47);color:#17130a;border:1
  <button onclick="restockPacks()">Acheter 5 boosters · 1 500 CC</button>
 </div>
 </section>
-<section id="collection" class="hidden"><div class="eyebrow">Ton classeur</div><h1>Ma collection.</h1><p class="sub">Toutes tes cartes obtenues, doublons compris.</p><div class="toolbar"><input id="search" placeholder="Rechercher un joueur…" oninput="renderCollection()"><select id="filter" onchange="renderCollection()"><option value="all">Toutes les raretés</option><option>Base</option><option>Rare</option><option>Epic</option><option>Legendary</option><option>Exceptional</option></select><select id="cc16EditionFilter" onchange="renderCollection()"><option value="all">Toutes les éditions</option><option value="chrome">Chrome Starter</option><option value="cosmic">Cosmic Chrome</option><option value="black">Chrome Black</option><option value="inception">Inception</option></select><select id="cc16Sort" onchange="renderCollection()"><option value="recent">Plus récentes</option><option value="name">Nom A–Z</option><option value="rarity">Rareté</option><option value="value">Valeur estimée</option></select></div><div id="collectionCards" class="cards"></div></section>
+<section id="collection" class="hidden"><div class="eyebrow">Ton classeur</div><h1>Ma collection.</h1><p class="sub">Toutes tes cartes obtenues, doublons compris.</p><div class="toolbar"><input id="search" placeholder="Rechercher un joueur…" oninput="renderCollection()"><select id="filter" onchange="renderCollection()"><option value="all">Toutes les raretés</option><option>Base</option><option>Rare</option><option>Epic</option><option>Legendary</option><option>Exceptional</option></select><select id="cc16EditionFilter" onchange="renderCollection()"><option value="all">Toutes les éditions</option><option value="chrome">Chrome Starter</option><option value="cosmic">Cosmic Chrome</option><option value="black">Chrome Black</option><option value="inception">Inception</option><option value="flagship">Topps Flagship</option><option value="finest">Topps Finest</option><option value="pristine">Topps Pristine</option></select><select id="cc16Sort" onchange="renderCollection()"><option value="recent">Plus récentes</option><option value="name">Nom A–Z</option><option value="rarity">Rareté</option><option value="value">Valeur estimée</option></select></div><div id="collectionCards" class="cards"></div></section>
 <section id="sales" class="hidden"><div class="eyebrow">Historique du collectionneur</div><h1>Mes ventes.</h1><p class="sub">Retrouve les cartes vendues et les crédits gagnés.</p><div class="stats"><div class="stat"><small>Cartes vendues</small><strong id="salesCount">0</strong></div><div class="stat"><small>Crédits gagnés</small><strong id="salesTotal">0 CC</strong></div><div class="stat"><small>Dernière vente</small><strong id="lastSale">—</strong></div></div><div id="salesList" class="panel"></div></section> <section id="market" class="hidden"><div class="eyebrow">Marché interne</div><h1>Le marché.</h1><p class="sub">Achète des cartes proposées par la simulation avec tes crédits. Les transactions sont fictives et locales.</p><div class="section-head"><h2>Cartes disponibles</h2><button class="secondary-btn" onclick="refreshMarket()">Actualiser la sélection</button></div><div id="marketList" class="panel"></div></section>
 <section id="trades" class="hidden"><div class="eyebrow">Entre collectionneurs</div><h1>Échanges.</h1><p class="sub">Prépare un échange de démonstration. Pour l'instant, les autres collectionneurs sont simulés.</p><div class="panel"><h3>Échange rapide</h3><p class="muted">Choisis une de tes cartes et échange-la contre une carte aléatoire de valeur proche.</p><select id="tradeCard" style="width:100%;padding:12px;background:#111c2b;color:white;border:1px solid #263449;border-radius:9px"></select><p><button onclick="tradeCard()">Proposer un échange</button></p><div id="tradeResult" class="muted"></div></div><div class="notice">Les échanges multijoueurs nécessiteront ensuite un serveur, des comptes et une protection contre la fraude.</div></section>
 <footer>COURTSIDE COLLECT · Prototype indépendant non affilié à la NBA ou à ses équipes. Les notes affichées sont des valeurs de jeu fictives.</footer>
@@ -510,7 +528,10 @@ function rarityRoll(editionId="chrome"){
   chrome:[.60,.25,.10,.04,.01],
   cosmic:[.48,.29,.14,.07,.02],
   black:[.38,.30,.18,.10,.04],
-  inception:[.43,.30,.17,.08,.02]
+  inception:[.43,.30,.17,.08,.02],
+  flagship:[.58,.26,.11,.04,.01],
+  finest:[.48,.29,.14,.07,.02],
+  pristine:[.34,.29,.20,.12,.05]
  }[editionId]||[.60,.25,.10,.04,.01];
  const r=Math.random();
  if(r<odds[4])return"Exceptional";
@@ -519,7 +540,7 @@ function rarityRoll(editionId="chrome"){
  if(r<odds[4]+odds[3]+odds[2]+odds[1])return"Rare";
  return"Base";
 }
-const editions={chrome:{name:"Chrome Starter",price:500,brand:"COURTSIDE CHROME"},cosmic:{name:"Cosmic Chrome",price:700,brand:"COSMIC CHROME"},black:{name:"Chrome Black",price:900,brand:"CHROME BLACK"},inception:{name:"Inception",price:800,brand:"INCEPTION"}};
+const editions={chrome:{name:"Chrome Starter",price:500,brand:"COURTSIDE CHROME"},cosmic:{name:"Cosmic Chrome",price:700,brand:"COSMIC CHROME"},black:{name:"Chrome Black",price:900,brand:"CHROME BLACK"},inception:{name:"Inception",price:800,brand:"INCEPTION"},flagship:{name:"Topps Flagship",price:600,brand:"TOPPS FLAGSHIP"},finest:{name:"Topps Finest",price:850,brand:"TOPPS FINEST"},pristine:{name:"Topps Pristine",price:1200,brand:"TOPPS PRISTINE"}};
 let activeEdition="chrome";
 function makeCard(editionId=activeEdition){
  const p=players[Math.floor(Math.random()*players.length)],r=rarityRoll(editionId);
@@ -540,7 +561,7 @@ function openPack(editionId="chrome"){
  const modal=document.getElementById("packModal"),intro=document.getElementById("packIntro"),stage=document.getElementById("cardRevealStage"),pack=document.getElementById("tearPack");
  if(!modal||!intro||!stage||!pack){alert("L'ouverture du booster n'a pas pu se lancer. Recharge la page.");return;}
  packBusy=true;state.coins-=selectedEdition.price;state.packs=(Number(state.packs)||0)+1;
- document.querySelector("#packIntro .badge").textContent=`COURTSIDE COLLECT · ${selectedEdition.brand}`;document.querySelector("#tearPack span").innerHTML=selectedEdition.brand.replace(" ","<br>");pack.classList.remove("edition-chrome","edition-cosmic","edition-black","edition-inception");pack.classList.add(`edition-${editionId}`);
+ document.querySelector("#packIntro .badge").textContent=`COURTSIDE COLLECT · ${selectedEdition.brand}`;document.querySelector("#tearPack span").innerHTML=selectedEdition.brand.replace(" ","<br>");pack.classList.remove("edition-chrome","edition-cosmic","edition-black","edition-inception","edition-flagship","edition-finest","edition-pristine");pack.classList.add(`edition-${editionId}`);
  currentPackCards=Array.from({length:8},()=>makeCard(editionId));state.cards.push(...currentPackCards);save();
  document.getElementById("packResult").innerHTML="";modal.classList.add("active");intro.classList.remove("hidden");stage.classList.add("hidden");
  pack.classList.remove("ripping");void pack.offsetWidth;
